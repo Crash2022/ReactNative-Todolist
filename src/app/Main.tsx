@@ -13,7 +13,12 @@ import {PATH} from '../api/path'
 // import {TodolistMain} from '../features/Todolist/TodolistMain'
 // import {PrivateRoutes} from '../common/components/PrivateRoutes/PrivateRoutes'
 import {View, Text, StyleSheet} from 'react-native'
-import {TodolistMain} from '../features/Todolist/TodolistMain'
+import {TodolistsScreen} from '../features/Todolists/TodolistsScreen'
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import {NavigationContainer} from "@react-navigation/native"
+import {ProfileScreen} from '../features/Profile/ProfileScreen'
+import {SettingsScreen} from "../features/Settings/SettingsScreen"
+import {HomeScreen} from "../features/Home/HomeScreen";
 
 /*------------------------------------------------*/
 
@@ -71,6 +76,8 @@ type AppWithReduxType = {
     demo?: boolean
 }
 
+const Stack = createNativeStackNavigator()
+
 export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
 
     // const navigate = useNavigate()
@@ -119,29 +126,36 @@ export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
     /*------------------------------------------------*/
 
     return (
-        <>
-        {/*// <View className='App'>*/}
-        {/*// <View style={{flex: 1}}>*/}
+        <NavigationContainer>
+            {/*// <View className='App'>*/}
+            {/*// <View style={{flex: 1}}>*/}
             {/*<View className={s.appNavBar}>*/}
-                {/*<AppNavBar/>*/}
-                {/*<ErrorSnackBar/>*/}
+            {/*<AppNavBar/>*/}
+            {/*<ErrorSnackBar/>*/}
             {/*</View>*/}
 
             {/*<View style={{flex: 1}}>*/}
-                {/*<Routes>*/}
-                    {/*<Route element={<PrivateRoutes/>}>*/}
-                    {/*    <Route path={'/'} element={<Navigate to={PATH.APP.TODOLISTS}/>}/>*/}
-                    {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
-                    <TodolistMain demo={demo}/>
-                    {/*</Route>*/}
+            {/*<Routes>*/}
+            {/*<Route element={<PrivateRoutes/>}>*/}
+            {/*    <Route path={'/'} element={<Navigate to={PATH.APP.TODOLISTS}/>}/>*/}
+            {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
+            <Stack.Navigator>
+                <Stack.Screen name="/" component={HomeScreen} />
+                <Stack.Screen name="Todolists" component={TodolistsScreen}/>
+                <Stack.Screen name="Profile" component={ProfileScreen}/>
+                <Stack.Screen name="Settings" component={SettingsScreen}/>
+            </Stack.Navigator>
+            {/*<TodolistMain demo={demo}/>*/}
 
-                    {/*<Route path={PATH.COMMON.LOGIN} element={<Login/>}/>*/}
-                    {/*<Route path={PATH.COMMON.ERROR404} element={<Error404/>}/>*/}
-                    {/*<Route path={'*'} element={<Navigate to={PATH.COMMON.ERROR404}/>}/>*/}
-                {/*</Routes>*/}
+            {/*</Route>*/}
+
+            {/*<Route path={PATH.COMMON.LOGIN} element={<Login/>}/>*/}
+            {/*<Route path={PATH.COMMON.ERROR404} element={<Error404/>}/>*/}
+            {/*<Route path={'*'} element={<Navigate to={PATH.COMMON.ERROR404}/>}/>*/}
+            {/*</Routes>*/}
             {/*</View>*/}
-        {/*// </View>*/}
-        </>
+            {/*// </View>*/}
+        </NavigationContainer>
     )
 })
 
