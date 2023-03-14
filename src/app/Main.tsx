@@ -1,28 +1,22 @@
-import React, {useEffect} from 'react';
-import {getTodolistsTC} from '../state/todolists-reducer';
+import React from 'react'
+import {getTodolistsTC} from '../state/todolists-reducer'
 // import {ErrorSnackBar} from '../common/components/ErrorSnackBar/ErrorSnackBar'
 import {initializeAppTC} from '../state/app-reducer'
-import {Navigate, Route, Routes, useNavigate} from 'react-router-dom'
 // import {Login} from '../features/Login/Login'
-// import {AppNavBar} from '../common/components/AppNavBar/AppNavBar'
-import {selectAppInitialized, selectAuthIsLoggedIn, selectTodolists} from '../state/selectors'
-import {useAppSelector} from '../common/hooks/useAppSelector'
-import {useAppDispatch} from '../common/hooks/useAppDispatch'
 import {PATH} from '../api/path'
 // import {Error404} from '../common/components/Error404/Error404'
-// import {TodolistMain} from '../features/Todolist/TodolistMain'
 // import {PrivateRoutes} from '../common/components/PrivateRoutes/PrivateRoutes'
 import {View, Text, StyleSheet} from 'react-native'
 import {TodolistsScreen} from '../pages/Todolists/TodolistsScreen'
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {NavigationContainer} from "@react-navigation/native"
 import {ProfileScreen} from '../pages/Profile/ProfileScreen'
 import {SettingsScreen} from "../pages/Settings/SettingsScreen"
-import {HomeScreen} from "../pages/Home/HomeScreen";
-import {SafeAreaProvider} from "react-native-safe-area-context";
-import {RootStackParamList} from "../common/types/NavigationTypes";
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {createDrawerNavigator} from "@react-navigation/drawer";
+import {HomeScreen} from "../pages/Home/HomeScreen"
+import {SafeAreaProvider} from "react-native-safe-area-context"
+import {RootStackParamList} from "../common/types/NavigationTypes"
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
+import {createDrawerNavigator} from "@react-navigation/drawer"
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
 
 /*------------------------------------------------*/
 
