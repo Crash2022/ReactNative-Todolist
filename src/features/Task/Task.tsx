@@ -5,7 +5,7 @@ import {TaskAPIType, TaskStatuses} from '../../api/todolistsAPI'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectAppStatus} from '../../state/selectors'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import {Checkbox} from 'expo-checkbox'
 import {v1} from 'react-native-uuid/dist/v1'
 import {MaterialCommunityIcons} from "@expo/vector-icons";
@@ -24,10 +24,9 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
         dispatch(deleteTaskTC(todolistId, task.id))
     }, [todolistId, task.id])
 
-    const changeStatusHandler = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-        let newIsDoneValue = event.currentTarget.checked;
+    const changeStatusHandler = useCallback((checked: boolean) => {
         dispatch(updateTaskTC(todolistId, task.id,
-            {status: newIsDoneValue ? TaskStatuses.Completed : TaskStatuses.New}))
+            {status: checked ? TaskStatuses.Completed : TaskStatuses.New}))
     }, [todolistId, task.id])
 
     const changeTaskTitleHandler = useCallback((newInputValue: string) => {
@@ -37,12 +36,12 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
     return (
         // className={task.status === TaskStatuses.Completed ? s.isDoneTask : ''}
         // <View key={v1()}>
-        <View style={taskItemStyles.container}>
+        <View style={taskItemStyles.task}>
             {/*<div className={s.taskItem}>*/}
             <View>
                 <Checkbox value={task.status === TaskStatuses.Completed}
-                          onValueChange={() => changeStatusHandler}
-                          // style={[globalStyles.border, mainElements.checkbox]}
+                          onValueChange={changeStatusHandler}
+                          style={taskItemStyles.checkbox}
                 />
                 {/*<View>*/}
                 {/*    <Checkbox checked={task.status === TaskStatuses.Completed}*/}
@@ -59,7 +58,9 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
             </View>
             {/*<View className={s.deleteButton}>*/}
             <View>
-                <MaterialCommunityIcons name="delete-variant" size={24} color="black" onPress={removeTaskHandler}/>
+                <TouchableOpacity>
+                    <MaterialCommunityIcons name="delete-variant" size={24} color="black" onPress={removeTaskHandler}/>
+                </TouchableOpacity>
                 {/*<IconButton onClick={removeTaskHandler}*/}
                 {/*            disabled={status === 'loading'}*/}
                 {/*            size='small'*/}
@@ -72,7 +73,11 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
 })
 
 const taskItemStyles = StyleSheet.create({
-    container: {
-        // flex: 1,
+    task: {
+        flexDirection: 'row',
+        padding: 5,
     },
+    checkbox: {
+        marginLeft: 10,
+    }
 })

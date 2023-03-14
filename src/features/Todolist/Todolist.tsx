@@ -3,13 +3,15 @@ import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
 import {EditableSpan} from '../../common/components/EditableSpan/EditableSpan'
 import {createTaskTC, getTasksTC} from '../../state/tasks-reducer'
 import {Task} from '../Task/Task'
-import {TodolistDomainType, updateTodolistFilterAC,
-    deleteTodolistTC, updateTodolistTitleTC} from '../../state/todolists-reducer'
+import {
+    TodolistDomainType, updateTodolistFilterAC,
+    deleteTodolistTC, updateTodolistTitleTC
+} from '../../state/todolists-reducer'
 import {TaskAPIType, TaskPriorities, TaskStatuses} from '../../api/todolistsAPI'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {AppRootStateType} from '../../state/store'
 import {useSelector} from 'react-redux'
-import {Button, StyleSheet, Text, View} from 'react-native'
+import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {v1} from 'react-native-uuid/dist/v1'
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
@@ -35,7 +37,7 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, 
     }, [todolist.id])
 
     const changeTodolistTitleHandler = useCallback((newInputValue: string) => {
-        dispatch(updateTodolistTitleTC( todolist.id, newInputValue))
+        dispatch(updateTodolistTitleTC(todolist.id, newInputValue))
     }, [todolist.id])
 
     const removeTodolistHandler = useCallback(() => {
@@ -79,21 +81,23 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, 
         // <View elevation={8} className={s.todolistPaper}>
         <View style={todolistStyles.container}>
             {/*<View className={s.todolistTitleBlock}>*/}
-            <View>
+            <View style={todolistStyles.addItemBlock}>
                 {/*<View className={s.todolist_title}>*/}
                 <View>
                     {/*<h3 className={s.h3}>*/}
                     {/*<View>*/}
-                        <EditableSpan title={todolist.title} onChangeInput={changeTodolistTitleHandler}/>
+                    <EditableSpan title={todolist.title} onChangeInput={changeTodolistTitleHandler}/>
                     {/*</View>*/}
                 </View>
 
                 {/*<View className={s.todolist_deleteBtn}>*/}
                 <View>
-                    <MaterialCommunityIcons name="delete-variant"
-                                            size={24} color="black"
-                                            onPress={removeTodolistHandler}
-                    />
+                    <TouchableOpacity style={todolistStyles.deleteIcon}>
+                        <MaterialCommunityIcons name="delete-variant"
+                                                size={24} color="black"
+                                                onPress={removeTodolistHandler}
+                        />
+                    </TouchableOpacity>
                     {/*<IconButton onClick={removeTodolistHandler} color="secondary"*/}
                     {/*            disabled={todolist.entityStatus === 'loading'}>*/}
                     {/*    <Delete/>*/}
@@ -133,6 +137,18 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, 
 
 const todolistStyles = StyleSheet.create({
     container: {
-        // flex: 1,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 10,
+        marginBottom: 10,
     },
+    addItemBlock: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    deleteIcon: {
+        paddingLeft: 10,
+    }
 });
