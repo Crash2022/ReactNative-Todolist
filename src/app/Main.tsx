@@ -19,6 +19,10 @@ import {NavigationContainer} from "@react-navigation/native"
 import {ProfileScreen} from '../features/Profile/ProfileScreen'
 import {SettingsScreen} from "../features/Settings/SettingsScreen"
 import {HomeScreen} from "../features/Home/HomeScreen";
+import {SafeAreaProvider} from "react-native-safe-area-context";
+import {RootStackParamList} from "../common/types/NavigationTypes";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {createDrawerNavigator} from "@react-navigation/drawer";
 
 /*------------------------------------------------*/
 
@@ -76,7 +80,9 @@ type AppWithReduxType = {
     demo?: boolean
 }
 
-const Stack = createNativeStackNavigator()
+// const Stack = createNativeStackNavigator<RootStackParamList>() // Stack
+const Stack = createBottomTabNavigator<RootStackParamList>() // Tab
+// const Stack = createDrawerNavigator() // Drawer
 
 export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
 
@@ -139,12 +145,14 @@ export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
             {/*<Route element={<PrivateRoutes/>}>*/}
             {/*    <Route path={'/'} element={<Navigate to={PATH.APP.TODOLISTS}/>}/>*/}
             {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
-            <Stack.Navigator>
-                <Stack.Screen name="/" component={HomeScreen} />
-                <Stack.Screen name="Todolists" component={TodolistsScreen}/>
-                <Stack.Screen name="Profile" component={ProfileScreen}/>
-                <Stack.Screen name="Settings" component={SettingsScreen}/>
-            </Stack.Navigator>
+            <SafeAreaProvider>
+                <Stack.Navigator>
+                    <Stack.Screen name="Home" component={HomeScreen}/>
+                    <Stack.Screen name="Todolists" component={TodolistsScreen}/>
+                    <Stack.Screen name="Profile" component={ProfileScreen}/>
+                    <Stack.Screen name="Settings" component={SettingsScreen}/>
+                </Stack.Navigator>
+            </SafeAreaProvider>
             {/*<TodolistMain demo={demo}/>*/}
 
             {/*</Route>*/}

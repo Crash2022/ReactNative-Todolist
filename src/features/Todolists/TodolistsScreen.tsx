@@ -9,10 +9,12 @@ import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native'
 import {Todolist} from '../Todolist/Todolist'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {MaterialIcons} from "@expo/vector-icons";
+import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
+import {TodolistsProps} from "../../common/types/NavigationTypes";
 
 type TodolistsScreenProps = {
     demo?: boolean
-    navigation: any
+    navigation: TodolistsProps
 }
 
 export const TodolistsScreen: React.FC<TodolistsScreenProps> = ({demo = false, navigation}) => {
@@ -29,43 +31,46 @@ export const TodolistsScreen: React.FC<TodolistsScreenProps> = ({demo = false, n
         }))
     }, [dispatch])
 
-    return (<View>
-            <View>
-                {/*<TouchableOpacity>*/}
-                    <Button title={'Go to Settings'} onPress={() => navigation.navigate('Settings')}/>
-                {/*</TouchableOpacity>*/}
-            </View>
-            <View style={todolistMainStyles.container}>
-                <View style={todolistMainStyles.addTodoBlock}>
-                    <View>
-                        <Text>Enter todolist title</Text>
-                    </View>
-                    <View style={[globalStyles.border, globalStyles.input]}>
-                        <AddItemForm addItem={addNewTodoList}/>
-                    </View>
-                </View>
-                {
-                    todolists.length !== 0 ?
-                        <View style={todolistMainStyles.todolistList}>
-                            {
-                                todolists.map((todo: any) => {
-                                    return (
-                                        <View key={todo.id}
-                                              style={[globalStyles.border, globalStyles.input]}
-                                        >
-                                            <Todolist
-                                                todolist={todo}
-                                                demo={demo}
-                                            />
-                                        </View>
-                                    )
-                                })
-                            }
+    return (
+        <SaveAreaViewWrapper>
+            <View style={globalStyles.container}>
+                {/*<View>*/}
+                {/*    /!*<TouchableOpacity>*!/*/}
+                {/*    <Button title={'Go to Settings'} onPress={() => navigation.navigate('Settings')}/>*/}
+                {/*    /!*</TouchableOpacity>*!/*/}
+                {/*</View>*/}
+                <View style={todolistMainStyles.container}>
+                    <View style={todolistMainStyles.addTodoBlock}>
+                        <View>
+                            <Text>Enter todolist title</Text>
                         </View>
-                        : <Text>{MESSAGE_TODOS_END}</Text>
-                }
+                        <View style={[globalStyles.border, globalStyles.input]}>
+                            <AddItemForm addItem={addNewTodoList}/>
+                        </View>
+                    </View>
+                    {
+                        todolists.length !== 0 ?
+                            <View style={todolistMainStyles.todolistList}>
+                                {
+                                    todolists.map((todo: any) => {
+                                        return (
+                                            <View key={todo.id}
+                                                  style={[globalStyles.border, globalStyles.input]}
+                                            >
+                                                <Todolist
+                                                    todolist={todo}
+                                                    demo={demo}
+                                                />
+                                            </View>
+                                        )
+                                    })
+                                }
+                            </View>
+                            : <Text>{MESSAGE_TODOS_END}</Text>
+                    }
+                </View>
             </View>
-        </View>
+        </SaveAreaViewWrapper>
     )
 }
 
