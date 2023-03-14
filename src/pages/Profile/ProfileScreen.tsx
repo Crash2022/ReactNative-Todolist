@@ -7,7 +7,7 @@ import {ProfileProps} from "../../common/types/NavigationTypes"
 export const ProfileScreen = ({navigation}: ProfileProps) => {
     return (
         <SaveAreaViewWrapper>
-            <View style={globalStyles.container}>
+            <View style={globalStyles.containerFlexEvenly}>
                 <Text>
                     Profile Page
                 </Text>

@@ -7,7 +7,7 @@ import {SettingsProps} from "../../common/types/NavigationTypes"
 export const SettingsScreen = ({navigation}: SettingsProps) => {
     return (
         <SaveAreaViewWrapper>
-            <View style={globalStyles.container}>
+            <View style={globalStyles.containerFlexEvenly}>
                 <Text>
                     Settings Page
                 </Text>

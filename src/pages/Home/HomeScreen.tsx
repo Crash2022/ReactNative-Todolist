@@ -8,7 +8,7 @@ import {FontAwesome, Ionicons} from '@expo/vector-icons'
 export const HomeScreen = ({navigation}: HomeProps) => {
     return (
         <SaveAreaViewWrapper>
-            <View style={globalStyles.container}>
+            <View style={globalStyles.containerFlexEvenly}>
                 <Text style={homeStyles.title}>
                     Welcome to TodolistsApp
                 </Text>
@@ -43,10 +43,6 @@ export const HomeScreen = ({navigation}: HomeProps) => {
 const homeStyles = StyleSheet.create({
     title: {
         fontSize: 24,
-    },
-    button: {
-        width: 200,
-        // height: 200,
     },
     icons: {
         alignItems: 'center',

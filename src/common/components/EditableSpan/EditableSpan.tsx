@@ -1,8 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react'
 import {useAppSelector} from '../../hooks/useAppSelector'
 import {selectAppStatus} from '../../../state/selectors'
-import {TextInput, Text, Button, View, TouchableOpacity} from 'react-native'
-import {MaterialIcons} from "@expo/vector-icons";
+import {TextInput, Text, Button, View, TouchableOpacity, StyleSheet} from 'react-native'
+import {MaterialIcons} from '@expo/vector-icons'
 
 type EditableSpanPropsType = {
     title: string
@@ -16,7 +16,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title,
     const status = useAppSelector(selectAppStatus)
 
     const [editMode, setEditMode] = useState<boolean>(false)
-    const [inputTitle, setInputTitle] = useState<string>('')
+    const [inputTitle, setInputTitle] = useState<string>(title)
     const [error, setError] = useState<string | null>(null)
     const [label, setLabel] = useState<string>('Change text')
 
@@ -44,51 +44,73 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title,
         return event.key === 'Enter' ? onClickNotEditSpanHandler() : '';
     }
 
-    useEffect(() => {
-        if (inputTitle.length < 1 && inputTitle.length > 100) {
-            setError(`${MESSAGE_INPUT_VALUE_LENGTH}`);
-            setLabel(`${MESSAGE_INPUT_VALUE_LENGTH}`);
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (inputTitle.length < 1 && inputTitle.length > 100) {
+    //         setError(`${MESSAGE_INPUT_VALUE_LENGTH}`);
+    //         setLabel(`${MESSAGE_INPUT_VALUE_LENGTH}`);
+    //     }
+    // }, [])
 
     return (
-        <>
-            {!editMode
-                ?
-                <View>
-                    <TextInput
-                        // label="Измените текст"
-                        // label={label}
-                        // variant="standard"
-                        // autoFocus
-                        value={inputTitle}
-                        // error={!!error}
-                        onChangeText={(newTitle: string) => {
-                            setInputTitle(newTitle)
-                        }}
-                        // onChangeText={onChangeInputHandler}
-                        // onBlur={onClickNotEditSpanHandler}
-                        // onKeyDown={enterChangeTitle}
-                        // disabled={status === 'loading'}
-                        // className={s.editableSpan}
-                    />
-                    <TouchableOpacity>
-                        <MaterialIcons name="file-download-done" size={24} color="black"
-                                       onPress={() => {
-                                           onChangeInput(inputTitle);
-                                           setEditMode(false)
-                                       }}
-                        />
-                    </TouchableOpacity>
-                    {/*<Button title={'*'}*/}
-                    {/*         onPress={() => {onChangeInput(inputTitle); setEditMode(false)}}*/}
-                    {/*/>*/}
-                </View>
-                : <Text onLongPress={() => {setEditMode(true)}}>{title}</Text>
+        <View style={editableSpanStyles.container}>
+            {
+                editMode ?
+                    <View style={editableSpanStyles.inputBlock}>
+                        <View>
+                            <TextInput
+                                value={inputTitle}
+                                onChangeText={(newTitle: string) => {setInputTitle(newTitle)}}
+                                style={editableSpanStyles.input}
+                                // disabled={status === 'loading'}
+                                // error={!!error}
+                                // autoFocus
+                            />
+                        </View>
+                        <View>
+                            <TouchableOpacity>
+                                <MaterialIcons name="file-download-done" size={30} color="green"
+                                               onPress={() => {
+                                                   onChangeInput(inputTitle)
+                                                   setEditMode(false)
+                                               }}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                        {/*<Button title={'*'}*/}
+                        {/*         onPress={() => {onChangeInput(inputTitle); setEditMode(false)}}*/}
+                        {/*/>*/}
+                    </View>
+                    : <View><Text style={editableSpanStyles.text} onLongPress={() => {setEditMode(true)}}>{title}</Text></View>
 
                 // : <Text onPress={onClickEditSpanHandler} className={s.textSpan}>{title}</Text>
                 // : <span onDoubleClick={onClickEditSpanHandler} className={s.textSpan}>{title}</span>
             }
-        </>
+        </View>
     )
 })
+
+const editableSpanStyles = StyleSheet.create({
+    container: {
+       //
+    },
+    inputBlock: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10,
+    },
+    input: {
+        // width: '80%',
+        fontSize: 20,
+        color: 'white',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: 'white',
+        padding: 10,
+    },
+    text: {
+        // padding: 10,
+        fontSize: 20,
+        color: 'white',
+    },
+});

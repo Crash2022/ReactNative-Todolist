@@ -1,6 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
-import {MaterialIcons} from "@expo/vector-icons";
+import {MaterialIcons} from '@expo/vector-icons';
 
 type AddItemFormPropsType = {
     addItem: (titleInput: string) => void
@@ -26,22 +26,24 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
         }
     }
 
-    const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.currentTarget.value)
-    }
-
-    const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (error !== null) {
-            setError('')
-        }
-        return event.key === 'Enter' ? callBackButtonHandler() : ''
-    }
+    // const onChangeInputHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    //     setInputValue(event.currentTarget.value)
+    // }
+    //
+    // const onKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    //     if (error !== null) {
+    //         setError('')
+    //     }
+    //     return event.key === 'Enter' ? callBackButtonHandler() : ''
+    // }
 
     return (
-        <View style={addItemFormStyles.container}>
+        <View style={addItemForm.container}>
+            <View style={addItemForm.inputBlock}>
                 <TextInput value={inputValue}
                            onChangeText={(newTitle: string) => {setInputValue(newTitle)}}
-                           style={addItemFormStyles.input}
+                           style={addItemForm.input}
+                           // disabled={disabled}
                 />
                 {/*<TextField variant="outlined"*/}
                 {/*           // label="Введите текст"*/}
@@ -54,33 +56,40 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
                 {/*           disabled={disabled}*/}
                 {/*/>*/}
                 {/*<View className={s.addItemForm_length}>*/}
+                <View>
+                    <TouchableOpacity>
+                        <MaterialIcons name="add-task" size={24} color="black"
+                                       onPress={callBackButtonHandler}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
+
             <View>
                 <Text>Text length: {inputValue.length} symbols, max - 100</Text>
-            </View>
-            <View>
-                <TouchableOpacity>
-                    <MaterialIcons name="add-task" size={24} color="black"
-                                   onPress={callBackButtonHandler}
-                    />
-                </TouchableOpacity>
-                {/*<IconButton onClick={callBackButtonHandler}*/}
-                {/*            color="primary"*/}
-                {/*            size="medium"*/}
-                {/*            disabled={disabled}*/}
-                {/*            style={{marginLeft: '5px'}}*/}
-                {/*>*/}
-                {/*    <AddComment/>*/}
-                {/*</IconButton>*/}
             </View>
         </View>
     )
 })
 
-const addItemFormStyles = StyleSheet.create({
+const addItemForm = StyleSheet.create({
     container: {
-        // flex: 1,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 10,
+    },
+    inputBlock: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+        marginBottom: 5,
     },
     input: {
-        width: 150,
+        minWidth: '70%',
+        padding: 10,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: 'black',
+        borderRadius: 10,
     },
 })

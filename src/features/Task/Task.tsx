@@ -8,7 +8,7 @@ import {selectAppStatus} from '../../state/selectors'
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import {Checkbox} from 'expo-checkbox'
 import {v1} from 'react-native-uuid/dist/v1'
-import {MaterialCommunityIcons} from "@expo/vector-icons"
+import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 type TaskPropsType = {
     todolistId: string
@@ -34,30 +34,29 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
     }, [todolistId, task.id])
 
     return (
-        <View style={task.status === TaskStatuses.Completed ? {...taskItemStyles.task, opacity: 0.5} : {...taskItemStyles.task}}>
+        <View style={task.status === TaskStatuses.Completed ? {
+            ...taskItemStyles.task,
+            opacity: 0.5
+        } : {...taskItemStyles.task}}>
             <View style={taskItemStyles.title}>
-                <Checkbox value={task.status === TaskStatuses.Completed}
-                          onValueChange={changeStatusHandler}
-                          style={taskItemStyles.checkbox}
-                          // disabled={status === 'loading'}
-                />
-
+                <View>
+                    <Checkbox value={task.status === TaskStatuses.Completed}
+                              onValueChange={changeStatusHandler}
+                              style={taskItemStyles.checkbox}
+                              // disabled={status === 'loading'}
+                    />
+                </View>
                 <EditableSpan title={task.title}
                               onChangeInput={changeTaskTitleHandler}
                 />
             </View>
             <View>
                 <TouchableOpacity>
-                    <MaterialCommunityIcons name="delete-variant" size={24} color="black"
+                    <MaterialCommunityIcons name="delete-variant" size={24} color="white"
                                             onPress={removeTaskHandler}
+                                            // disabled={status === 'loading'}
                     />
                 </TouchableOpacity>
-                {/*<IconButton onClick={removeTaskHandler}*/}
-                {/*            disabled={status === 'loading'}*/}
-                {/*            size='small'*/}
-                {/*>*/}
-                {/*    <Delete/>*/}
-                {/*</IconButton>*/}
             </View>
         </View>
     )
@@ -71,8 +70,10 @@ const taskItemStyles = StyleSheet.create({
     },
     title: {
         flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
     },
     checkbox: {
-        marginLeft: 10,
+        // marginLeft: 10,
     }
 })

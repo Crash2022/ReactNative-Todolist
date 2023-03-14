@@ -72,16 +72,16 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
     /*------------------------------------------------*/
 
     return (
-        <View style={todolistStyles.container}>
+        <>
             <View style={todolistStyles.addItemBlock}>
-                <View>
+                <View style={todolistStyles.editableSpan}>
                     <EditableSpan title={todolist.title} onChangeInput={changeTodolistTitleHandler}/>
                 </View>
 
                 <View>
                     <TouchableOpacity style={todolistStyles.deleteIcon}>
                         <MaterialCommunityIcons name="delete-variant"
-                                                size={24} color="black"
+                                                size={30} color="orange"
                                                 onPress={removeTodolistHandler}
                                                 // disabled={todolist.entityStatus === 'loading'}
                         />
@@ -89,15 +89,17 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
                 </View>
             </View>
 
-            <AddItemForm addItem={addTaskHandler} disabled={todolist.entityStatus === 'loading'}/>
+            <View style={todolistStyles.addItemForm}>
+                <AddItemForm addItem={addTaskHandler} disabled={todolist.entityStatus === 'loading'}/>
+            </View>
 
-            <View>
+            <View style={todolistStyles.filterButtons}>
                 <Button title={'All'} onPress={updateFilterAll}/>
                 <Button title={'Completed'} onPress={updateFilterCompleted}/>
                 <Button title={'Active'} onPress={updateFilterActive}/>
             </View>
 
-            <View>
+            <View style={todolistStyles.tasksList}>
                 {
                     filteredTasks.map((task: any) => {
                         return (
@@ -111,11 +113,9 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
             </View>
 
             {
-                tasksObj.length === 0
-                    ? <View><Text>{MESSAGE_TASKS_END}</Text></View>
-                    : <Text>Test commit</Text>
+                tasksObj.length === 0 ? <View style={todolistStyles.taskMessage}><Text>{MESSAGE_TASKS_END}</Text></View> : ''
             }
-        </View>
+        </>
     )
 })
 
@@ -129,10 +129,28 @@ const todolistStyles = StyleSheet.create({
     },
     addItemBlock: {
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        justifyContent: 'space-between',
+        height: 60,
+    },
+    editableSpan: {
+        marginBottom: 20,
     },
     deleteIcon: {
         paddingLeft: 10,
+    },
+    addItemForm: {
+        marginBottom: 10,
+    },
+    filterButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
+    tasksList: {
+
+    },
+    taskMessage: {
+        alignItems: 'center',
     }
 });

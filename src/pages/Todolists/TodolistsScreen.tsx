@@ -8,9 +8,9 @@ import {v1} from 'react-native-uuid/dist/v1'
 import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native'
 import {Todolist} from '../../features/Todolist/Todolist'
 import {globalStyles} from '../../common/styles/GlobalStyles'
-import {MaterialIcons} from "@expo/vector-icons"
+import {MaterialIcons} from '@expo/vector-icons'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {TodolistsProps} from "../../common/types/NavigationTypes"
+import {TodolistsProps} from '../../common/types/NavigationTypes'
 
 export const TodolistsScreen = () => {
 
@@ -26,47 +26,41 @@ export const TodolistsScreen = () => {
         }))
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getTodolistsTC());
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getTodolistsTC());
+    // }, [])
 
     return (
         <SaveAreaViewWrapper>
-            <View style={globalStyles.container}>
+            <View style={globalStyles.containerFlexBetween}>
                 {/*<View>*/}
                 {/*    /!*<TouchableOpacity>*!/*/}
                 {/*    <Button title={'Go to Settings'} onPress={() => navigation.navigate('Settings')}/>*/}
                 {/*    /!*</TouchableOpacity>*!/*/}
                 {/*</View>*/}
-                <View style={todolistMainStyles.container}>
-                    <View style={todolistMainStyles.addTodoBlock}>
-                        <View>
-                            <Text>Enter todolist title</Text>
-                        </View>
-                        <View style={[globalStyles.border, globalStyles.input]}>
-                            <AddItemForm addItem={addNewTodoList}/>
-                        </View>
+                <View style={todolistMainStyles.addTodoBlock}>
+                    <View style={todolistMainStyles.addTodoBlockTitle}>
+                        <Text style={todolistMainStyles.addTodoBlockText}>Enter todolist title</Text>
                     </View>
-                    {
-                        todolists.length !== 0 ?
-                            <View style={todolistMainStyles.todolistList}>
-                                {
-                                    todolists.map((todo: any) => {
-                                        return (
-                                            <View key={todo.id}
-                                                  style={[globalStyles.border, globalStyles.input]}
-                                            >
-                                                <Todolist
-                                                    todolist={todo}
-                                                />
-                                            </View>
-                                        )
-                                    })
-                                }
-                            </View>
-                            : <Text>{MESSAGE_TODOS_END}</Text>
-                    }
+                    <AddItemForm addItem={addNewTodoList}/>
                 </View>
+                {
+                    todolists.length !== 0 ?
+                        <View>
+                            {
+                                todolists.map((todo: any) => {
+                                    return (
+                                        <View key={todo.id}
+                                              style={todolistMainStyles.todolistList}
+                                        >
+                                            <Todolist todolist={todo}/>
+                                        </View>
+                                    )
+                                })
+                            }
+                        </View>
+                        : <Text>{MESSAGE_TODOS_END}</Text>
+                }
             </View>
         </SaveAreaViewWrapper>
     )
@@ -75,12 +69,22 @@ export const TodolistsScreen = () => {
 // styles
 const todolistMainStyles = StyleSheet.create({
     container: {
-        // overflow: 'scroll',
+        //
     },
     addTodoBlock: {
-        // flex: 1,
+        alignItems: 'center',
+        marginBottom: 30,
+    },
+    addTodoBlockTitle: {
+        marginBottom: 10,
+    },
+    addTodoBlockText: {
+        fontSize: 20,
     },
     todolistList: {
-        // flex: 1,
+        marginBottom: 10,
+        borderRadius: 10,
+        padding: 20,
+        backgroundColor: '#8c7851',
     },
 });
