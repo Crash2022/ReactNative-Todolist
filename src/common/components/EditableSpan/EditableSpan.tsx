@@ -1,7 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react'
 import {useAppSelector} from '../../hooks/useAppSelector'
 import {selectAppStatus} from '../../../state/selectors'
-import {TextInput, Text, Button} from 'react-native'
+import {TextInput, Text, Button, View} from 'react-native'
+import {MaterialIcons} from "@expo/vector-icons";
 
 type EditableSpanPropsType = {
     title: string
@@ -54,28 +55,29 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title,
         <>
             {!editMode
                     ?
-                    <>
+                    <View>
                     <TextInput
                         // label="Измените текст"
                         // label={label}
                         // variant="standard"
-                        autoFocus
+                        // autoFocus
                         value={inputTitle}
                         // error={!!error}
-                        onChangeText={(newTitle: string) => {
-                            setInputTitle(newTitle)
-                        }}
+                        onChangeText={(newTitle: string) => {setInputTitle(newTitle)}}
                         // onChangeText={onChangeInputHandler}
                         // onBlur={onClickNotEditSpanHandler}
                         // onKeyDown={enterChangeTitle}
                         // disabled={status === 'loading'}
                         // className={s.editableSpan}
                     />
-                    <Button title={'*'}
-                            onPress={() => {onChangeInput(inputTitle); setEditMode(false)}}
+                    <MaterialIcons name="file-download-done" size={24} color="black"
+                                   onPress={() => {onChangeInput(inputTitle); setEditMode(false)}}
                     />
-                    </>
-                    : <Text onPress={() => {setEditMode(true)}}>{title}</Text>
+                    {/*<Button title={'*'}*/}
+                    {/*         onPress={() => {onChangeInput(inputTitle); setEditMode(false)}}*/}
+                    {/*/>*/}
+                    </View>
+                    : <Text onLongPress={() => {setEditMode(true)}}>{title}</Text>
 
             // : <Text onPress={onClickEditSpanHandler} className={s.textSpan}>{title}</Text>
             // : <span onDoubleClick={onClickEditSpanHandler} className={s.textSpan}>{title}</span>

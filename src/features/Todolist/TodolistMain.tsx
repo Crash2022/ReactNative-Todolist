@@ -28,10 +28,10 @@ export const TodolistMain: React.FC<TodolistMainType> = ({demo = false}) => {
     }, [dispatch])
 
     return (
-        <View>
-            <View>
+        <View style={todolistMainStyles.container}>
+            <View style={todolistMainStyles.addTodoBlock}>
                 <View>
-                    <Text>Add new todolist</Text>
+                    <Text>Enter todolist title</Text>
                 </View>
                 <View style={[globalStyles.border, globalStyles.input]}>
                     <AddItemForm addItem={addNewTodoList}/>
@@ -39,7 +39,7 @@ export const TodolistMain: React.FC<TodolistMainType> = ({demo = false}) => {
             </View>
             {
                 todolists.length !== 0 ?
-                    <View>
+                    <View style={todolistMainStyles.todolistList}>
                         {
                             todolists.map((todo: any) => {
                                 return (
@@ -64,6 +64,12 @@ export const TodolistMain: React.FC<TodolistMainType> = ({demo = false}) => {
 // styles
 const todolistMainStyles = StyleSheet.create({
     container: {
+        // flex: 1,
+    },
+    addTodoBlock: {
+        // flex: 1,
+    },
+    todolistList: {
         // flex: 1,
     },
 });

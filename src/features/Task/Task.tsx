@@ -5,9 +5,10 @@ import {TaskAPIType, TaskStatuses} from '../../api/todolistsAPI'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectAppStatus} from '../../state/selectors'
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 import {Checkbox} from 'expo-checkbox'
 import {v1} from 'react-native-uuid/dist/v1'
+import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 type TaskPropsType = {
     todolistId: string
@@ -36,9 +37,13 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
     return (
         // className={task.status === TaskStatuses.Completed ? s.isDoneTask : ''}
         // <View key={v1()}>
-        <View>
+        <View style={taskItemStyles.container}>
             {/*<div className={s.taskItem}>*/}
             <View>
+                <Checkbox value={task.status === TaskStatuses.Completed}
+                          onValueChange={() => changeStatusHandler}
+                          // style={[globalStyles.border, mainElements.checkbox]}
+                />
                 {/*<View>*/}
                 {/*    <Checkbox checked={task.status === TaskStatuses.Completed}*/}
                 {/*              onChangeText={changeStatusHandler}*/}
@@ -46,21 +51,28 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
                 {/*    />*/}
                 {/*</View>*/}
                 {/*<div className={s.taskText}>*/}
-                <View>
-                    <EditableSpan title={task.title}
-                                  onChangeInput={changeTaskTitleHandler}
-                    />
-                </View>
-                {/*<View className={s.deleteButton}>*/}
-                <View>
-                    {/*<IconButton onClick={removeTaskHandler}*/}
-                    {/*            disabled={status === 'loading'}*/}
-                    {/*            size='small'*/}
-                    {/*>*/}
-                    {/*    <Delete/>*/}
-                    {/*</IconButton>*/}
-                </View>
+            </View>
+            <View>
+                <EditableSpan title={task.title}
+                              onChangeInput={changeTaskTitleHandler}
+                />
+            </View>
+            {/*<View className={s.deleteButton}>*/}
+            <View>
+                <MaterialCommunityIcons name="delete-variant" size={24} color="black" onPress={removeTaskHandler}/>
+                {/*<IconButton onClick={removeTaskHandler}*/}
+                {/*            disabled={status === 'loading'}*/}
+                {/*            size='small'*/}
+                {/*>*/}
+                {/*    <Delete/>*/}
+                {/*</IconButton>*/}
             </View>
         </View>
     )
+})
+
+const taskItemStyles = StyleSheet.create({
+    container: {
+        // flex: 1,
+    },
 })

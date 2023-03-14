@@ -119,14 +119,15 @@ export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
     /*------------------------------------------------*/
 
     return (
-        // <View className='App'>
-        <View style={{flex: 1}}>
+        <>
+        {/*// <View className='App'>*/}
+        {/*// <View style={{flex: 1}}>*/}
             {/*<View className={s.appNavBar}>*/}
                 {/*<AppNavBar/>*/}
                 {/*<ErrorSnackBar/>*/}
             {/*</View>*/}
 
-            <View style={{flex: 1}}>
+            {/*<View style={{flex: 1}}>*/}
                 {/*<Routes>*/}
                     {/*<Route element={<PrivateRoutes/>}>*/}
                     {/*    <Route path={'/'} element={<Navigate to={PATH.APP.TODOLISTS}/>}/>*/}
@@ -138,8 +139,9 @@ export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
                     {/*<Route path={PATH.COMMON.ERROR404} element={<Error404/>}/>*/}
                     {/*<Route path={'*'} element={<Navigate to={PATH.COMMON.ERROR404}/>}/>*/}
                 {/*</Routes>*/}
-            </View>
-        </View>
+            {/*</View>*/}
+        {/*// </View>*/}
+        </>
     )
 })
 

@@ -8,5 +8,9 @@ export const globalStyles = StyleSheet.create({
     },
     input: {
         padding: 20,
+        backgroundColor: 'green',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: 'black',
     }
 });

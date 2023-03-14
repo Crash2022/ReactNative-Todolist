@@ -9,8 +9,9 @@ import {TaskAPIType, TaskPriorities, TaskStatuses} from '../../api/todolistsAPI'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {AppRootStateType} from '../../state/store'
 import {useSelector} from 'react-redux'
-import {Button, Text, View} from 'react-native'
+import {Button, StyleSheet, Text, View} from 'react-native'
 import {v1} from 'react-native-uuid/dist/v1'
+import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 type TodolistPropsType = {
     todolist: TodolistDomainType
@@ -20,8 +21,8 @@ type TodolistPropsType = {
 export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, todolist}) => {
 
     const MESSAGE_TASKS_END = 'No tasks in this todolist'
-    const dispatch = useAppDispatch();
-    const tasksObj = useSelector<AppRootStateType, Array<TaskAPIType>>(state => state.tasks[todolist.id]);
+    const dispatch = useAppDispatch()
+    const tasksObj = useSelector<AppRootStateType, Array<TaskAPIType>>(state => state.tasks[todolist.id])
 
     /*------------------------------------------------*/
 
@@ -76,19 +77,23 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, 
 
     return (
         // <View elevation={8} className={s.todolistPaper}>
-        <View>
+        <View style={todolistStyles.container}>
             {/*<View className={s.todolistTitleBlock}>*/}
             <View>
                 {/*<View className={s.todolist_title}>*/}
                 <View>
                     {/*<h3 className={s.h3}>*/}
-                    <View>
+                    {/*<View>*/}
                         <EditableSpan title={todolist.title} onChangeInput={changeTodolistTitleHandler}/>
-                    </View>
+                    {/*</View>*/}
                 </View>
 
                 {/*<View className={s.todolist_deleteBtn}>*/}
                 <View>
+                    <MaterialCommunityIcons name="delete-variant"
+                                            size={24} color="black"
+                                            onPress={removeTodolistHandler}
+                    />
                     {/*<IconButton onClick={removeTodolistHandler} color="secondary"*/}
                     {/*            disabled={todolist.entityStatus === 'loading'}>*/}
                     {/*    <Delete/>*/}
@@ -125,3 +130,9 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, 
         </View>
     )
 })
+
+const todolistStyles = StyleSheet.create({
+    container: {
+        // flex: 1,
+    },
+});

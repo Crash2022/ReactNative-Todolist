@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
+import {MaterialIcons} from "@expo/vector-icons";
 
 type AddItemFormPropsType = {
     addItem: (titleInput: string) => void
@@ -38,8 +39,12 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
 
     return (
         // <View className={s.addItemForm}>
-        <View>
-            <View>
+        <View style={addItemFormStyles.container}>
+            {/*<View>*/}
+                <TextInput value={inputValue}
+                           onChangeText={(newTitle: string) => {setInputValue(newTitle)}}
+                           style={addItemFormStyles.input}
+                />
                 {/*<TextField variant="outlined"*/}
                 {/*           // label="Введите текст"*/}
                 {/*           label="Enter text here..."*/}
@@ -51,11 +56,14 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
                 {/*           disabled={disabled}*/}
                 {/*/>*/}
                 {/*<View className={s.addItemForm_length}>*/}
-                <View>
-                  <Text>Text length: {inputValue.length} symbols, max - 100</Text>
-                </View>
+            {/*</View>*/}
+            <View>
+                <Text>Text length: {inputValue.length} symbols, max - 100</Text>
             </View>
             <View>
+                <TouchableOpacity>
+                    <MaterialIcons name="add-task" size={24} color="black" onPress={callBackButtonHandler}/>
+                </TouchableOpacity>
                 {/*<IconButton onClick={callBackButtonHandler}*/}
                 {/*            color="primary"*/}
                 {/*            size="medium"*/}
@@ -66,5 +74,14 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
                 {/*</IconButton>*/}
             </View>
         </View>
-    );
+    )
+})
+
+const addItemFormStyles = StyleSheet.create({
+    container: {
+        // flex: 1,
+    },
+    input: {
+        width: 150,
+    },
 })
