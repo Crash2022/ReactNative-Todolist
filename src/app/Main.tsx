@@ -13,12 +13,12 @@ import {PATH} from '../api/path'
 // import {TodolistMain} from '../features/Todolist/TodolistMain'
 // import {PrivateRoutes} from '../common/components/PrivateRoutes/PrivateRoutes'
 import {View, Text, StyleSheet} from 'react-native'
-import {TodolistsScreen} from '../features/Todolists/TodolistsScreen'
+import {TodolistsScreen} from '../pages/Todolists/TodolistsScreen'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {NavigationContainer} from "@react-navigation/native"
-import {ProfileScreen} from '../features/Profile/ProfileScreen'
-import {SettingsScreen} from "../features/Settings/SettingsScreen"
-import {HomeScreen} from "../features/Home/HomeScreen";
+import {ProfileScreen} from '../pages/Profile/ProfileScreen'
+import {SettingsScreen} from "../pages/Settings/SettingsScreen"
+import {HomeScreen} from "../pages/Home/HomeScreen";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {RootStackParamList} from "../common/types/NavigationTypes";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
@@ -87,16 +87,12 @@ const Stack = createBottomTabNavigator<RootStackParamList>() // Tab
 export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
 
     // const navigate = useNavigate()
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
     // const isLoggedIn = useAppSelector(selectAuthIsLoggedIn)
     // const isInitialized = useAppSelector(selectAppInitialized)
     // const todolists = useAppSelector(selectTodolists)
 
     /*------------------------------------------------*/
-
-    useEffect(() => {
-        dispatch(getTodolistsTC());
-    }, [])
 
     // useEffect(() => {
     //     if (demo || !isLoggedIn) {
@@ -133,13 +129,6 @@ export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
 
     return (
         <NavigationContainer>
-            {/*// <View className='App'>*/}
-            {/*// <View style={{flex: 1}}>*/}
-            {/*<View className={s.appNavBar}>*/}
-            {/*<AppNavBar/>*/}
-            {/*<ErrorSnackBar/>*/}
-            {/*</View>*/}
-
             {/*<View style={{flex: 1}}>*/}
             {/*<Routes>*/}
             {/*<Route element={<PrivateRoutes/>}>*/}
@@ -154,7 +143,6 @@ export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
                 </Stack.Navigator>
             </SafeAreaProvider>
             {/*<TodolistMain demo={demo}/>*/}
-
             {/*</Route>*/}
 
             {/*<Route path={PATH.COMMON.LOGIN} element={<Login/>}/>*/}

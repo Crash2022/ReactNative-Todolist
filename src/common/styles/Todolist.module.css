@@ -63,6 +63,12 @@
     max-width: 100%;
 }
 
+.circularProgress {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
+
 /*-----NavBar-----*/
 .appNavBar {
     height: 70px;

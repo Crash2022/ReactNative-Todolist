@@ -1,16 +1,16 @@
+import React, {useCallback, useEffect} from 'react'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectTodolists} from '../../state/selectors'
-import React, {useCallback, useEffect} from 'react'
 import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
-import {createTodolistTC} from '../../state/todolists-reducer'
+import {createTodolistTC, getTodolistsTC} from '../../state/todolists-reducer'
 import {v1} from 'react-native-uuid/dist/v1'
 import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native'
-import {Todolist} from '../Todolist/Todolist'
+import {Todolist} from '../../features/Todolist/Todolist'
 import {globalStyles} from '../../common/styles/GlobalStyles'
-import {MaterialIcons} from "@expo/vector-icons";
+import {MaterialIcons} from "@expo/vector-icons"
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {TodolistsProps} from "../../common/types/NavigationTypes";
+import {TodolistsProps} from "../../common/types/NavigationTypes"
 
 type TodolistsScreenProps = {
     demo?: boolean
@@ -30,6 +30,10 @@ export const TodolistsScreen: React.FC<TodolistsScreenProps> = ({demo = false, n
             entityStatus: 'idle', addedDate: '', order: 0
         }))
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getTodolistsTC());
+    }, [])
 
     return (
         <SaveAreaViewWrapper>
@@ -77,7 +81,7 @@ export const TodolistsScreen: React.FC<TodolistsScreenProps> = ({demo = false, n
 // styles
 const todolistMainStyles = StyleSheet.create({
     container: {
-        // flex: 1,
+        // overflow: 'scroll',
     },
     addTodoBlock: {
         // flex: 1,

@@ -4,8 +4,6 @@ import {Main} from './src/app/Main'
 import {store} from './src/state/store'
 import {Provider} from 'react-redux'
 
-// expo start --clear
-
 // App
 export default function App() {
     return (
