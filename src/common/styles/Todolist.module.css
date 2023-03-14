@@ -1,0 +1,209 @@
+/*-----мои стили-----*/
+/*.todolistMain {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+.todolistMain > div {
+    width: 350px;
+}
+
+.todolistHeader {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.inputClass {
+    margin-right: 5px;
+    border: 1px solid black;
+}
+.inputError {
+    margin-right: 5px;
+    border: 2px solid red;
+}
+.spanError {
+    color: red;
+    height: 25px;
+}
+
+.filterAll {
+    background-color: gray;
+    color: white;
+    padding: 5px;
+}
+.filterActive {
+    background-color: red;
+    color: white;
+    padding: 5px;
+}
+.filterCompleted {
+    background-color: darkorange;
+    color: white;
+    padding: 5px;
+}
+.filterNone {
+    padding: 5px;
+}*/
+
+/*button {
+    margin: 3px;
+}*/
+/*.inputBox {
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+
+
+/*-----для Material UI-----*/
+/*-----App-----*/
+.appContainer {
+    max-width: 100%;
+}
+
+/*-----NavBar-----*/
+.appNavBar {
+    height: 70px;
+}
+.navbarMenu {
+    display: flex;
+    align-items: center;
+}
+.linkStyle {
+    text-decoration: none;
+    color: white;
+}
+
+/*-----TodolistMain-----*/
+.todolistPaper {
+    padding: 15px;
+    width: 350px;
+    margin: 20px 0;
+}
+.todolistGridWrapper {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+.todolistAddForm {
+    padding: 20px;
+    text-align: center;
+}
+.todolistAddForm_item {
+    padding: 10px;
+}
+
+/*-----Todolist-----*/
+.todolistTitleBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+.todolist_title {
+    padding-left: 30px;
+    word-wrap: break-word;
+    width: 250px;
+}
+.todolist_deleteBtn {
+
+}
+/*h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+.filterButtons {
+    margin: 10px;
+    text-align: center;
+}
+
+/*-----Task-----*/
+li {
+    list-style-type: none;
+}
+.isDoneTask {
+    opacity: 0.5;
+}
+/*.noTasksList {
+    color: red;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px;
+}*/
+.noTasks {
+    font-size: 16px;
+    font-weight: bold;
+    color: orange;
+    text-align: center;
+    margin: 5px 0;
+}
+.todoEnd {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: orange;
+}
+
+.taskItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.taskText {
+    word-wrap: break-word;
+    width: 200px;
+}
+
+.deleteButton {
+    margin-left: 30px;
+    /*padding: 20px;*/
+}
+
+/*-----AddItemForm-----*/
+.addItemForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addItemForm_length {
+    font-size: 12px;
+    text-align: center;
+}
+
+/*-----EditableSpan-----*/
+.textSpan {
+    word-wrap: break-word;
+    width: 350px;
+    text-align: center;
+    /*margin-left: 15px;*/
+}
+.editableSpan {
+    width: 200px;
+}
+
+/*-----Login-----*/
+.loginGrid {
+    margin-top: 60px;
+}
+.form {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 1px gray;
+    width: 300px;
+    text-align: center;
+}
+.formLabel {
+    text-align: center;
+}
+.formGroupEmail {
+    height: 90px;
+    width: 100%;
+}
+.formGroupPassword {
+    height: 90px;
+    margin-bottom: 20px;
+}

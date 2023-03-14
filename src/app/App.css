@@ -1,0 +1,11 @@
+/*
+.App {
+    max-width: 1200px;
+    margin: 0 auto;
+}*/
+
+.circularProgress {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+}
