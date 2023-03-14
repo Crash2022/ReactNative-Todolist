@@ -38,7 +38,7 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
         // <View key={v1()}>
         <View style={task.status === TaskStatuses.Completed ? {...taskItemStyles.task, opacity: 0.5} : {...taskItemStyles.task}}>
             {/*<div className={s.taskItem}>*/}
-            <View>
+            <View style={taskItemStyles.title}>
                 <Checkbox value={task.status === TaskStatuses.Completed}
                           onValueChange={changeStatusHandler}
                           style={taskItemStyles.checkbox}
@@ -50,8 +50,6 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
                 {/*    />*/}
                 {/*</View>*/}
                 {/*<div className={s.taskText}>*/}
-            </View>
-            <View>
                 <EditableSpan title={task.title}
                               onChangeInput={changeTaskTitleHandler}
                 />
@@ -75,7 +73,11 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
 const taskItemStyles = StyleSheet.create({
     task: {
         flexDirection: 'row',
+        justifyContent: 'space-between',
         padding: 5,
+    },
+    title: {
+        flexDirection: 'row',
     },
     checkbox: {
         marginLeft: 10,
