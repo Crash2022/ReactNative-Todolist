@@ -120,7 +120,7 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, 
             {
                 tasksObj.length === 0
                     ? <View><Text>{MESSAGE_TASKS_END}</Text></View>
-                    : <Text></Text>
+                    : <Text>Test commit</Text>
             }
         </View>
     )
