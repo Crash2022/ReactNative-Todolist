@@ -11,7 +11,9 @@ export const SettingsScreen = ({navigation}: SettingsProps) => {
                 <Text>
                     Settings Page
                 </Text>
-                <Button title={'Go Profile'} onPress={() => navigation.navigate('Profile')}/>
+                <Button title={'Go Profile'}
+                        onPress={() => navigation.navigate('Profile')}
+                />
             </View>
         </SaveAreaViewWrapper>
     )

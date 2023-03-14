@@ -11,7 +11,9 @@ export const ProfileScreen = ({navigation}: ProfileProps) => {
                 <Text>
                     Profile Page
                 </Text>
-                <Button title={'Go Todolists'} onPress={() => navigation.navigate('Todolists')}/>
+                <Button title={'Go Todolists'}
+                        onPress={() => navigation.navigate('Todolists')}
+                />
             </View>
         </SaveAreaViewWrapper>
     )

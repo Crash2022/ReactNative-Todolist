@@ -1,8 +1,8 @@
-import React from "react"
-import {View, Text, Button, StyleSheet} from 'react-native'
-import {SaveAreaViewWrapper} from "../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper"
-import {globalStyles} from "../../common/styles/GlobalStyles"
-import {HomeProps} from "../../common/types/NavigationTypes"
+import React from 'react'
+import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native'
+import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
+import {globalStyles} from '../../common/styles/GlobalStyles'
+import {HomeProps} from '../../common/types/NavigationTypes'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
 
 export const HomeScreen = ({navigation}: HomeProps) => {
@@ -13,18 +13,22 @@ export const HomeScreen = ({navigation}: HomeProps) => {
                     Welcome to TodolistsApp
                 </Text>
                 <View style={homeStyles.icons}>
-                    <FontAwesome name="list-alt" size={100} color="green"
-                                 onPress={() => navigation.navigate('Todolists')}
-                    />
+                    <TouchableOpacity>
+                        <FontAwesome name="list-alt" size={100} color="green"
+                                     onPress={() => navigation.navigate('Todolists')}
+                        />
+                    </TouchableOpacity>
                     <Text>Todolists</Text>
                     {/*<Button title={'Go Todolists'}*/}
                     {/*        onPress={() => navigation.navigate('Todolists')}*/}
                     {/*/>*/}
                 </View>
                 <View style={homeStyles.icons}>
-                    <Ionicons name="settings-sharp" size={100} color="green"
-                              onPress={() => navigation.navigate('Settings')}
-                    />
+                    <TouchableOpacity>
+                        <Ionicons name="settings-sharp" size={100} color="green"
+                                  onPress={() => navigation.navigate('Settings')}
+                        />
+                    </TouchableOpacity>
                     <Text>Settings</Text>
                     {/*<Button title={'Go Settings'}*/}
                     {/*        onPress={() => navigation.navigate('Settings')}*/}

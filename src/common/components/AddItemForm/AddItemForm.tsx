@@ -38,9 +38,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
     }
 
     return (
-        // <View className={s.addItemForm}>
         <View style={addItemFormStyles.container}>
-            {/*<View>*/}
                 <TextInput value={inputValue}
                            onChangeText={(newTitle: string) => {setInputValue(newTitle)}}
                            style={addItemFormStyles.input}
@@ -56,13 +54,14 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
                 {/*           disabled={disabled}*/}
                 {/*/>*/}
                 {/*<View className={s.addItemForm_length}>*/}
-            {/*</View>*/}
             <View>
                 <Text>Text length: {inputValue.length} symbols, max - 100</Text>
             </View>
             <View>
                 <TouchableOpacity>
-                    <MaterialIcons name="add-task" size={24} color="black" onPress={callBackButtonHandler}/>
+                    <MaterialIcons name="add-task" size={24} color="black"
+                                   onPress={callBackButtonHandler}
+                    />
                 </TouchableOpacity>
                 {/*<IconButton onClick={callBackButtonHandler}*/}
                 {/*            color="primary"*/}

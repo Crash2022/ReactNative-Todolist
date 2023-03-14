@@ -12,12 +12,7 @@ import {MaterialIcons} from "@expo/vector-icons"
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
 import {TodolistsProps} from "../../common/types/NavigationTypes"
 
-type TodolistsScreenProps = {
-    demo?: boolean
-    navigation: TodolistsProps
-}
-
-export const TodolistsScreen: React.FC<TodolistsScreenProps> = ({demo = false, navigation}) => {
+export const TodolistsScreen = () => {
 
     const MESSAGE_TODOS_END = 'No todolists'
 
@@ -63,7 +58,6 @@ export const TodolistsScreen: React.FC<TodolistsScreenProps> = ({demo = false, n
                                             >
                                                 <Todolist
                                                     todolist={todo}
-                                                    demo={demo}
                                                 />
                                             </View>
                                         )

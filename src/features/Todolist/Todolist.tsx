@@ -3,10 +3,8 @@ import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
 import {EditableSpan} from '../../common/components/EditableSpan/EditableSpan'
 import {createTaskTC, getTasksTC} from '../../state/tasks-reducer'
 import {Task} from '../Task/Task'
-import {
-    TodolistDomainType, updateTodolistFilterAC,
-    deleteTodolistTC, updateTodolistTitleTC
-} from '../../state/todolists-reducer'
+import {TodolistDomainType, updateTodolistFilterAC,
+    deleteTodolistTC, updateTodolistTitleTC} from '../../state/todolists-reducer'
 import {TaskAPIType, TaskPriorities, TaskStatuses} from '../../api/todolistsAPI'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {AppRootStateType} from '../../state/store'
@@ -17,10 +15,9 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 type TodolistPropsType = {
     todolist: TodolistDomainType
-    demo?: boolean
 }
 
-export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, todolist}) => {
+export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => {
 
     const MESSAGE_TASKS_END = 'No tasks in this todolist'
     const dispatch = useAppDispatch()
@@ -69,39 +66,26 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({demo = false, 
     /*------------------------------------------------*/
 
     useEffect(() => {
-        if (demo) {
-            return
-        }
         dispatch(getTasksTC(todolist.id));
     }, [])
 
     /*------------------------------------------------*/
 
     return (
-        // <View elevation={8} className={s.todolistPaper}>
         <View style={todolistStyles.container}>
-            {/*<View className={s.todolistTitleBlock}>*/}
             <View style={todolistStyles.addItemBlock}>
-                {/*<View className={s.todolist_title}>*/}
                 <View>
-                    {/*<h3 className={s.h3}>*/}
-                    {/*<View>*/}
                     <EditableSpan title={todolist.title} onChangeInput={changeTodolistTitleHandler}/>
-                    {/*</View>*/}
                 </View>
 
-                {/*<View className={s.todolist_deleteBtn}>*/}
                 <View>
                     <TouchableOpacity style={todolistStyles.deleteIcon}>
                         <MaterialCommunityIcons name="delete-variant"
                                                 size={24} color="black"
                                                 onPress={removeTodolistHandler}
+                                                // disabled={todolist.entityStatus === 'loading'}
                         />
                     </TouchableOpacity>
-                    {/*<IconButton onClick={removeTodolistHandler} color="secondary"*/}
-                    {/*            disabled={todolist.entityStatus === 'loading'}>*/}
-                    {/*    <Delete/>*/}
-                    {/*</IconButton>*/}
                 </View>
             </View>
 

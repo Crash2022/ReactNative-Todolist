@@ -11,9 +11,9 @@ type EditableSpanPropsType = {
 
 export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title, onChangeInput}) => {
 
-    const status = useAppSelector(selectAppStatus)
-
     const MESSAGE_INPUT_VALUE_LENGTH = 'Text length must be 1-100 symbols'
+
+    const status = useAppSelector(selectAppStatus)
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [inputTitle, setInputTitle] = useState<string>('')
@@ -84,9 +84,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title,
                     {/*         onPress={() => {onChangeInput(inputTitle); setEditMode(false)}}*/}
                     {/*/>*/}
                 </View>
-                : <Text onLongPress={() => {
-                    setEditMode(true)
-                }}>{title}</Text>
+                : <Text onLongPress={() => {setEditMode(true)}}>{title}</Text>
 
                 // : <Text onPress={onClickEditSpanHandler} className={s.textSpan}>{title}</Text>
                 // : <span onDoubleClick={onClickEditSpanHandler} className={s.textSpan}>{title}</span>

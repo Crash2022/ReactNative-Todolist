@@ -70,15 +70,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack'
 
 /*------------------------------------------------*/
 
-type AppWithReduxType = {
-    demo?: boolean
-}
-
 // const Stack = createNativeStackNavigator<RootStackParamList>() // Stack
 const Stack = createBottomTabNavigator<RootStackParamList>() // Tab
 // const Stack = createDrawerNavigator() // Drawer
 
-export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
+export const Main = React.memo(() => {
 
     // const navigate = useNavigate()
     // const dispatch = useAppDispatch()
@@ -107,7 +103,6 @@ export const Main: React.FC<AppWithReduxType> = React.memo(({demo = false}) => {
     // useEffect(() => {
     //     !isLoggedIn && navigate(PATH.COMMON.LOGIN);
     // }, [isLoggedIn])
-
 
     // лоадер, если приложение не инициализировано
     // if (!isInitialized) {
