@@ -17,6 +17,7 @@ import {RootStackParamList} from "../common/types/NavigationTypes"
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import {createDrawerNavigator} from "@react-navigation/drawer"
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
 
 /*------------------------------------------------*/
 
@@ -125,10 +126,42 @@ export const Main = React.memo(() => {
             {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
             <SafeAreaProvider>
                 <Stack.Navigator>
-                    <Stack.Screen name="Home" component={HomeScreen}/>
-                    <Stack.Screen name="Todolists" component={TodolistsScreen}/>
-                    <Stack.Screen name="Profile" component={ProfileScreen}/>
-                    <Stack.Screen name="Settings" component={SettingsScreen}/>
+                    <Stack.Screen name="Home"
+                                  component={HomeScreen}
+                                  options={{
+                                      tabBarLabel: 'Home',
+                                      tabBarIcon: ({ color, size }) => (
+                                          <MaterialCommunityIcons name="home" color={color} size={size}/>
+                                      ),
+                                  }}
+                    />
+                    <Stack.Screen name="Todolists"
+                                  component={TodolistsScreen}
+                                  options={{
+                                      tabBarLabel: 'Todolists',
+                                      tabBarIcon: ({ color, size }) => (
+                                          <FontAwesome name="list-alt" size={size} color={color}/>
+                                      ),
+                                  }}
+                    />
+                    <Stack.Screen name="Profile"
+                                  component={ProfileScreen}
+                                  options={{
+                                      tabBarLabel: 'Profile',
+                                      tabBarIcon: ({ color, size }) => (
+                                          <FontAwesome name="user-circle-o" size={size} color={color}/>
+                                      ),
+                                  }}
+                    />
+                    <Stack.Screen name="Settings"
+                                  component={SettingsScreen}
+                                  options={{
+                                      tabBarLabel: 'Settings',
+                                      tabBarIcon: ({ color, size }) => (
+                                          <Ionicons name="settings-sharp" size={size} color={color}/>
+                                      ),
+                                  }}
+                    />
                 </Stack.Navigator>
             </SafeAreaProvider>
             {/*<TodolistMain demo={demo}/>*/}
