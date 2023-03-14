@@ -36,7 +36,7 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
     return (
         // className={task.status === TaskStatuses.Completed ? s.isDoneTask : ''}
         // <View key={v1()}>
-        <View style={taskItemStyles.task}>
+        <View style={task.status === TaskStatuses.Completed ? {...taskItemStyles.task, opacity: 0.5} : {...taskItemStyles.task}}>
             {/*<div className={s.taskItem}>*/}
             <View>
                 <Checkbox value={task.status === TaskStatuses.Completed}
