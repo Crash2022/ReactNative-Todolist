@@ -1,11 +1,11 @@
-import React, {useCallback} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {View, Text, StyleSheet, FlatList, TouchableOpacity, Button} from 'react-native'
+import {ScrollView, View, Text, StyleSheet, FlatList, TouchableOpacity, Button} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectTodolists} from '../../state/selectors'
 import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
-import {createTodolistTC} from '../../state/todolists-reducer'
+import {createTodolistTC, getTodolistsTC} from '../../state/todolists-reducer'
 import {v1} from 'react-native-uuid/dist/v1'
 import {Todolist} from '../../features/Todolist/Todolist'
 import {globalStyles} from '../../common/styles/GlobalStyles'
@@ -25,8 +25,13 @@ export const TodolistsScreen = () => {
         }))
     }, [dispatch])
 
+    useEffect(() => {
+        dispatch(getTodolistsTC())
+    }, [])
+
     return (
         <SaveAreaViewWrapper>
+            {/*<ScrollView>*/}
             <View style={globalStyles.containerFlexBetween}>
                 {/*<View>*/}
                 {/*    /!*<TouchableOpacity>*!/*/}
@@ -41,27 +46,30 @@ export const TodolistsScreen = () => {
                 </View>
                 {
                     todolists.length !== 0 ?
-                        // <View>
-                        //     {
-                        //         todolists.map((todo: any) => {
-                        //             return (
-                        //                 <View key={todo.id}
-                        //                       style={todolistMainStyles.todolistList}
-                        //                 >
-                        //                     <Todolist todolist={todo}/>
-                        //                 </View>
-                        //             )
-                        //         })
-                        //     }
-                        // </View>
-
-                        <FlatList data={todolists}
-                                  renderItem={({item}) => <Todolist todolist={item} />}
-                                  keyExtractor={item => item.id}
-                        />
+                        <ScrollView>
+                            {
+                                todolists.map((todo: any) => {
+                                    return (
+                                        <View key={todo.id}
+                                              style={todolistMainStyles.todolistList}
+                                        >
+                                            <Todolist todolist={todo}/>
+                                        </View>
+                                    )
+                                })
+                            }
+                        </ScrollView>
                         : <Text>{MESSAGE_TODOS_END}</Text>
+
+                        // <FlatList data={todolists}
+                        //           renderItem={({item}) => <Todolist todolist={item}/>}
+                        //           keyExtractor={item => item.id}
+                        //           style={todolistMainStyles.todolistList}
+                        // />
+
                 }
             </View>
+            {/*</ScrollView>*/}
         </SaveAreaViewWrapper>
     )
 }

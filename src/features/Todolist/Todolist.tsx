@@ -66,7 +66,7 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
     /*------------------------------------------------*/
 
     useEffect(() => {
-        dispatch(getTasksTC(todolist.id));
+        dispatch(getTasksTC(todolist.id))
     }, [])
 
     /*------------------------------------------------*/
@@ -129,7 +129,7 @@ const todolistStyles = StyleSheet.create({
     },
     addItemBlock: {
         flexDirection: 'row',
-        // alignItems: 'center',
+        alignItems: 'center',
         justifyContent: 'space-between',
         height: 60,
     },
@@ -137,7 +137,7 @@ const todolistStyles = StyleSheet.create({
         marginBottom: 20,
     },
     deleteIcon: {
-        paddingLeft: 10,
+        // paddingLeft: 10,
     },
     addItemForm: {
         marginBottom: 10,

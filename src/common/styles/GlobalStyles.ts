@@ -23,4 +23,9 @@ export const globalStyles = StyleSheet.create({
         borderRadius: 10,
         padding: 20,
     },
+    outline: {
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
 });

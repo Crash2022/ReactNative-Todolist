@@ -80,7 +80,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title,
                         {/*         onPress={() => {onChangeInput(inputTitle); setEditMode(false)}}*/}
                         {/*/>*/}
                     </View>
-                    : <View><Text style={editableSpanStyles.text} onLongPress={() => {setEditMode(true)}}>{title}</Text></View>
+                    : <View><Text style={editableSpanStyles.text} onPress={() => {setEditMode(true)}}>{title}</Text></View>
 
                 // : <Text onPress={onClickEditSpanHandler} className={s.textSpan}>{title}</Text>
                 // : <span onDoubleClick={onClickEditSpanHandler} className={s.textSpan}>{title}</span>
@@ -96,17 +96,18 @@ const editableSpanStyles = StyleSheet.create({
     inputBlock: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         gap: 10,
     },
     input: {
-        // width: '80%',
         fontSize: 20,
         color: 'white',
         borderStyle: 'solid',
         borderWidth: 1,
         borderColor: 'white',
         padding: 10,
+        width: 200,
+        height: 50,
     },
     text: {
         // padding: 10,

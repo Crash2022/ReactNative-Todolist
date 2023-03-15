@@ -3,6 +3,7 @@ import React, {ReactElement, ReactNode} from 'react'
 import {Main} from './src/app/Main'
 import {store} from './src/state/store'
 import {Provider} from 'react-redux'
+import {globalStyles} from './src/common/styles/GlobalStyles';
 
 // App
 export default function App() {
@@ -16,9 +17,9 @@ export default function App() {
 }
 
 // HideKeyboard
-const HideKeyboard = ({children}: { children: ReactNode }): ReactElement => {
+export const HideKeyboard = ({children}: { children: ReactNode }): ReactElement => {
     return (
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} style={globalStyles.outline}>
             {children}
         </TouchableWithoutFeedback>
     )

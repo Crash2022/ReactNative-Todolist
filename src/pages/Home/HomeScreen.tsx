@@ -6,6 +6,7 @@ import {HomeProps} from '../../common/types/NavigationTypes'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
 
 export const HomeScreen = ({navigation}: HomeProps) => {
+
     return (
         <SaveAreaViewWrapper>
             <View style={globalStyles.containerFlexEvenly}>

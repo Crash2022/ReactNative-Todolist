@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
-import {MaterialIcons} from '@expo/vector-icons';
+import {MaterialIcons} from '@expo/vector-icons'
+import {HideKeyboard} from '../../../../App'
 
 type AddItemFormPropsType = {
     addItem: (titleInput: string) => void
@@ -38,37 +39,43 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
     // }
 
     return (
-        <View style={addItemForm.container}>
-            <View style={addItemForm.inputBlock}>
-                <TextInput value={inputValue}
-                           onChangeText={(newTitle: string) => {setInputValue(newTitle)}}
-                           style={addItemForm.input}
-                           // disabled={disabled}
-                />
-                {/*<TextField variant="outlined"*/}
-                {/*           // label="Введите текст"*/}
-                {/*           label="Enter text here..."*/}
-                {/*           onChange={onChangeInputHandler}*/}
-                {/*           onKeyDown={onKeyDownHandler}*/}
-                {/*           value={inputValue}*/}
-                {/*           error={!!error}*/}
-                {/*           helperText={error}*/}
-                {/*           disabled={disabled}*/}
-                {/*/>*/}
-                {/*<View className={s.addItemForm_length}>*/}
+        <HideKeyboard>
+            <View style={addItemForm.container}>
+                <View style={addItemForm.inputBlock}>
+
+                    <TextInput value={inputValue}
+                               onChangeText={(newTitle: string) => {
+                                   setInputValue(newTitle)
+                               }}
+                               style={addItemForm.input}
+                        // disabled={disabled}
+                    />
+
+                    {/*<TextField variant="outlined"*/}
+                    {/*           // label="Введите текст"*/}
+                    {/*           label="Enter text here..."*/}
+                    {/*           onChange={onChangeInputHandler}*/}
+                    {/*           onKeyDown={onKeyDownHandler}*/}
+                    {/*           value={inputValue}*/}
+                    {/*           error={!!error}*/}
+                    {/*           helperText={error}*/}
+                    {/*           disabled={disabled}*/}
+                    {/*/>*/}
+                    {/*<View className={s.addItemForm_length}>*/}
+                    <View>
+                        <TouchableOpacity>
+                            <MaterialIcons name="add-task" size={24} color="black"
+                                           onPress={callBackButtonHandler}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
                 <View>
-                    <TouchableOpacity>
-                        <MaterialIcons name="add-task" size={24} color="black"
-                                       onPress={callBackButtonHandler}
-                        />
-                    </TouchableOpacity>
+                    <Text>Text length: {inputValue.length} symbols, max - 100</Text>
                 </View>
             </View>
-
-            <View>
-                <Text>Text length: {inputValue.length} symbols, max - 100</Text>
-            </View>
-        </View>
+        </HideKeyboard>
     )
 })
 
