@@ -25,7 +25,7 @@
 //     rememberMe: boolean
 // }
 //
-// export const Login = () => {
+// export const Login.tsx = () => {
 //
 //     const isLoggedIn = useAppSelector(selectAuthIsLoggedIn);
 //     const dispatch = useAppDispatch();
@@ -125,7 +125,7 @@
 //                                     color={'primary'}
 //                                     variant={'contained'}
 //                             >
-//                                 Login
+//                                 Login.tsx
 //                             </Button>
 //                         </FormGroup>
 //

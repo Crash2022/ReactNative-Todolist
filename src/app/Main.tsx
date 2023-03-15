@@ -2,7 +2,7 @@ import React from 'react'
 import {getTodolistsTC} from '../state/todolists-reducer'
 // import {ErrorSnackBar} from '../common/components/ErrorSnackBar/ErrorSnackBar'
 import {initializeAppTC} from '../state/app-reducer'
-// import {Login} from '../features/Login/Login'
+// import {Login.tsx} from '../features/Login.tsx/Login.tsx'
 import {PATH} from '../api/path'
 // import {Error404} from '../common/components/Error404/Error404'
 // import {PrivateRoutes} from '../common/components/PrivateRoutes/PrivateRoutes'
@@ -17,7 +17,8 @@ import {RootStackParamList} from "../common/types/NavigationTypes"
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import {createDrawerNavigator} from "@react-navigation/drawer"
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons';
+import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
+import {RootAuth} from "../pages/Auth/RootAuth";
 
 /*------------------------------------------------*/
 
@@ -126,15 +127,24 @@ export const Main = React.memo(() => {
             {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
             <SafeAreaProvider>
                 <Stack.Navigator>
-                    <Stack.Screen name="Home"
-                                  component={HomeScreen}
+                    <Stack.Screen name="Auth"
+                                  component={RootAuth}
                                   options={{
-                                      tabBarLabel: 'Home',
+                                      tabBarLabel: 'Auth',
                                       tabBarIcon: ({ color, size }) => (
                                           <MaterialCommunityIcons name="home" color={color} size={size}/>
                                       ),
                                   }}
                     />
+                    {/*<Stack.Screen name="Home"*/}
+                    {/*              component={HomeScreen}*/}
+                    {/*              options={{*/}
+                    {/*                  tabBarLabel: 'Home',*/}
+                    {/*                  tabBarIcon: ({ color, size }) => (*/}
+                    {/*                      <MaterialCommunityIcons name="home" color={color} size={size}/>*/}
+                    {/*                  ),*/}
+                    {/*              }}*/}
+                    {/*/>*/}
                     <Stack.Screen name="Todolists"
                                   component={TodolistsScreen}
                                   options={{
@@ -167,7 +177,7 @@ export const Main = React.memo(() => {
             {/*<TodolistMain demo={demo}/>*/}
             {/*</Route>*/}
 
-            {/*<Route path={PATH.COMMON.LOGIN} element={<Login/>}/>*/}
+            {/*<Route path={PATH.COMMON.LOGIN} element={<Login.tsx/>}/>*/}
             {/*<Route path={PATH.COMMON.ERROR404} element={<Error404/>}/>*/}
             {/*<Route path={'*'} element={<Navigate to={PATH.COMMON.ERROR404}/>}/>*/}
             {/*</Routes>*/}
@@ -182,4 +192,4 @@ const mainStyles = StyleSheet.create({
     container: {
         // flex: 1,
     },
-});
+})

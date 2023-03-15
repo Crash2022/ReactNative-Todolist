@@ -153,4 +153,4 @@ const todolistStyles = StyleSheet.create({
     taskMessage: {
         alignItems: 'center',
     }
-});
+})
