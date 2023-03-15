@@ -1,16 +1,15 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {useCallback} from 'react'
+import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
+import {View, Text, StyleSheet, FlatList, TouchableOpacity, Button} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectTodolists} from '../../state/selectors'
 import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
-import {createTodolistTC, getTodolistsTC} from '../../state/todolists-reducer'
+import {createTodolistTC} from '../../state/todolists-reducer'
 import {v1} from 'react-native-uuid/dist/v1'
-import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native'
 import {Todolist} from '../../features/Todolist/Todolist'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {MaterialIcons} from '@expo/vector-icons'
-import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {TodolistsProps} from '../../common/types/NavigationTypes'
 
 export const TodolistsScreen = () => {
 
@@ -25,10 +24,6 @@ export const TodolistsScreen = () => {
             entityStatus: 'idle', addedDate: '', order: 0
         }))
     }, [dispatch])
-
-    // useEffect(() => {
-    //     dispatch(getTodolistsTC());
-    // }, [])
 
     return (
         <SaveAreaViewWrapper>
@@ -46,19 +41,24 @@ export const TodolistsScreen = () => {
                 </View>
                 {
                     todolists.length !== 0 ?
-                        <View>
-                            {
-                                todolists.map((todo: any) => {
-                                    return (
-                                        <View key={todo.id}
-                                              style={todolistMainStyles.todolistList}
-                                        >
-                                            <Todolist todolist={todo}/>
-                                        </View>
-                                    )
-                                })
-                            }
-                        </View>
+                        // <View>
+                        //     {
+                        //         todolists.map((todo: any) => {
+                        //             return (
+                        //                 <View key={todo.id}
+                        //                       style={todolistMainStyles.todolistList}
+                        //                 >
+                        //                     <Todolist todolist={todo}/>
+                        //                 </View>
+                        //             )
+                        //         })
+                        //     }
+                        // </View>
+
+                        <FlatList data={todolists}
+                                  renderItem={({item}) => <Todolist todolist={item} />}
+                                  keyExtractor={item => item.id}
+                        />
                         : <Text>{MESSAGE_TODOS_END}</Text>
                 }
             </View>
