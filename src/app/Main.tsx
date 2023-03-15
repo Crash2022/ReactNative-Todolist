@@ -1,25 +1,22 @@
 import React from 'react'
-import {getTodolistsTC} from '../state/todolists-reducer'
-// import {ErrorSnackBar} from '../common/components/ErrorSnackBar/ErrorSnackBar'
-import {initializeAppTC} from '../state/app-reducer'
-// import {Login.tsx} from '../features/Login.tsx/Login.tsx'
 import {PATH} from '../api/path'
+// import {ErrorSnackBar} from '../common/components/ErrorSnackBar/ErrorSnackBar'
+// import {Login} from '../features/Login.tsx/Login'
 // import {Error404} from '../common/components/Error404/Error404'
 // import {PrivateRoutes} from '../common/components/PrivateRoutes/PrivateRoutes'
-import {View, Text, StyleSheet} from 'react-native'
+import {HomeScreen} from "../pages/Home/HomeScreen"
 import {TodolistsScreen} from '../pages/Todolists/TodolistsScreen'
-import {NavigationContainer} from "@react-navigation/native"
 import {ProfileScreen} from '../pages/Profile/ProfileScreen'
 import {SettingsScreen} from "../pages/Settings/SettingsScreen"
-import {HomeScreen} from "../pages/Home/HomeScreen"
+import {RootAuth} from "../pages/Auth/RootAuth"
+import {LoginFull} from '../pages/Auth/LoginFull'
 import {SafeAreaProvider} from "react-native-safe-area-context"
+import {NavigationContainer} from "@react-navigation/native"
 import {RootStackParamList} from "../common/types/NavigationTypes"
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import {createDrawerNavigator} from "@react-navigation/drawer"
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
-import {RootAuth} from "../pages/Auth/RootAuth";
-import {LoginFull} from '../pages/Auth/LoginFull';
 
 /*------------------------------------------------*/
 
@@ -73,9 +70,9 @@ import {LoginFull} from '../pages/Auth/LoginFull';
 
 /*------------------------------------------------*/
 
-// const Stack = createNativeStackNavigator<RootStackParamList>() // Stack
-const Stack = createBottomTabNavigator<RootStackParamList>() // Tab
-// const Stack = createDrawerNavigator() // Drawer
+// const Stack = createNativeStackNavigator<RootStackParamList>()
+const Tab = createBottomTabNavigator<RootStackParamList>()
+// const Drawer = createDrawerNavigator()
 
 export const Main = React.memo(() => {
 
@@ -127,8 +124,8 @@ export const Main = React.memo(() => {
             {/*    <Route path={'/'} element={<Navigate to={PATH.APP.TODOLISTS}/>}/>*/}
             {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
             <SafeAreaProvider>
-                <Stack.Navigator>
-                    <Stack.Screen name="Auth"
+                <Tab.Navigator>
+                    <Tab.Screen name="Auth"
                                   component={RootAuth}
                                   options={{
                                       tabBarLabel: 'Auth',
@@ -137,7 +134,7 @@ export const Main = React.memo(() => {
                                       ),
                                   }}
                     />
-                    {/*<Stack.Screen name="Home"*/}
+                    {/*<Tab.Screen name="Home"*/}
                     {/*              component={HomeScreen}*/}
                     {/*              options={{*/}
                     {/*                  tabBarLabel: 'Home',*/}
@@ -146,7 +143,7 @@ export const Main = React.memo(() => {
                     {/*                  ),*/}
                     {/*              }}*/}
                     {/*/>*/}
-                    <Stack.Screen name="Todolists"
+                    <Tab.Screen name="Todolists"
                                   component={TodolistsScreen}
                                   options={{
                                       tabBarLabel: 'Todolists',
@@ -155,7 +152,7 @@ export const Main = React.memo(() => {
                                       ),
                                   }}
                     />
-                    <Stack.Screen name="Profile"
+                    <Tab.Screen name="Profile"
                                   component={LoginFull}
                                   options={{
                                       tabBarLabel: 'Profile',
@@ -164,7 +161,7 @@ export const Main = React.memo(() => {
                                       ),
                                   }}
                     />
-                    <Stack.Screen name="Settings"
+                    <Tab.Screen name="Settings"
                                   component={SettingsScreen}
                                   options={{
                                       tabBarLabel: 'Settings',
@@ -173,7 +170,7 @@ export const Main = React.memo(() => {
                                       ),
                                   }}
                     />
-                </Stack.Navigator>
+                </Tab.Navigator>
             </SafeAreaProvider>
             {/*<TodolistMain demo={demo}/>*/}
             {/*</Route>*/}
@@ -186,11 +183,4 @@ export const Main = React.memo(() => {
             {/*// </View>*/}
         </NavigationContainer>
     )
-})
-
-// styles
-const mainStyles = StyleSheet.create({
-    container: {
-        // flex: 1,
-    },
 })

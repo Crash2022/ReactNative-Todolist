@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from 'react'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {ScrollView, View, Text, StyleSheet, FlatList, TouchableOpacity, Button, ListRenderItem} from 'react-native'
+import {ScrollView, View, Text, FlatList, TouchableOpacity, Button, ListRenderItem} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectTodolists} from '../../state/selectors'
