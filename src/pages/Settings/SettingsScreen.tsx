@@ -5,6 +5,7 @@ import {globalStyles} from "../../common/styles/GlobalStyles"
 import {SettingsProps} from "../../common/types/NavigationTypes"
 
 export const SettingsScreen = ({navigation}: SettingsProps) => {
+
     return (
         <SaveAreaViewWrapper>
             <View style={globalStyles.containerFlexEvenly}>

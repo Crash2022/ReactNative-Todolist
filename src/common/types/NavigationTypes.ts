@@ -7,6 +7,7 @@ export type RootStackParamList = {
     Auth: NavigatorScreenParams<RootAuthParamList>
     Home: undefined
     Todolists: undefined
+    // LoginFull: undefined
     Settings: undefined
     Profile: undefined
 }
@@ -23,5 +24,6 @@ export type RootAuthScreenProps = CompositeScreenProps<
 export type RootAuthProps = NativeStackScreenProps<RootStackParamList, 'Auth'>
 export type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>
 export type TodolistsProps = NativeStackScreenProps<RootStackParamList, 'Todolists'>
+// export type SettingsProps = NativeStackScreenProps<RootStackParamList, 'LoginFull'>
 export type SettingsProps = NativeStackScreenProps<RootStackParamList, 'Settings'>
 export type ProfileProps = NativeStackScreenProps<RootStackParamList, 'Profile'>

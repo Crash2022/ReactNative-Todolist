@@ -1,9 +1,15 @@
 import React from 'react'
-import {View, Text, Button, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, Text, Button, StyleSheet, TouchableOpacity, Dimensions} from 'react-native'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {HomeProps} from '../../common/types/NavigationTypes'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
+
+// функция отдаёт значения размера экрана
+// (можно использовать для вычисления размера блоков в стилях)
+// const {width, height} = Dimensions.get('screen')
+// const WIDTH = width
+// const HEIGHT = height
 
 export const HomeScreen = ({navigation}: HomeProps) => {
 

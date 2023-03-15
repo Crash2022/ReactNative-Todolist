@@ -5,6 +5,7 @@ import {globalStyles} from "../../common/styles/GlobalStyles"
 import {ProfileProps} from "../../common/types/NavigationTypes"
 
 export const ProfileScreen = ({navigation}: ProfileProps) => {
+
     return (
         <SaveAreaViewWrapper>
             <View style={globalStyles.containerFlexEvenly}>

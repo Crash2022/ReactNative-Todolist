@@ -5,10 +5,11 @@ import {TaskAPIType, TaskStatuses} from '../../api/todolistsAPI'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectAppStatus} from '../../state/selectors'
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity} from 'react-native'
 import {Checkbox} from 'expo-checkbox'
 import {v1} from 'react-native-uuid/dist/v1'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
+import {taskStyles} from './TaskStyles';
 
 type TaskPropsType = {
     todolistId: string
@@ -35,14 +36,14 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
 
     return (
         <View style={task.status === TaskStatuses.Completed ? {
-            ...taskItemStyles.task,
+            ...taskStyles.task,
             opacity: 0.5
-        } : {...taskItemStyles.task}}>
-            <View style={taskItemStyles.title}>
+        } : {...taskStyles.task}}>
+            <View style={taskStyles.title}>
                 <View>
                     <Checkbox value={task.status === TaskStatuses.Completed}
                               onValueChange={changeStatusHandler}
-                              style={taskItemStyles.checkbox}
+                              style={taskStyles.checkbox}
                               // disabled={status === 'loading'}
                     />
                 </View>
@@ -60,20 +61,4 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
             </View>
         </View>
     )
-})
-
-const taskItemStyles = StyleSheet.create({
-    task: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 5,
-    },
-    title: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 10,
-    },
-    checkbox: {
-        // marginLeft: 10,
-    }
 })

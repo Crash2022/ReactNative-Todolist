@@ -1,7 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
-import {View, Text, StyleSheet, TouchableOpacity, TextInput} from 'react-native'
+import {View, Text, TouchableOpacity, TextInput} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons'
 import {HideKeyboard} from '../../../../App'
+import {addItemFormStyles} from './AddItemFormStyles';
 
 type AddItemFormPropsType = {
     addItem: (titleInput: string) => void
@@ -40,14 +41,14 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
 
     return (
         <HideKeyboard>
-            <View style={addItemForm.container}>
-                <View style={addItemForm.inputBlock}>
+            <View style={addItemFormStyles.container}>
+                <View style={addItemFormStyles.inputBlock}>
 
                     <TextInput value={inputValue}
                                onChangeText={(newTitle: string) => {
                                    setInputValue(newTitle)
                                }}
-                               style={addItemForm.input}
+                               style={addItemFormStyles.input}
                         // disabled={disabled}
                     />
 
@@ -77,26 +78,4 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
             </View>
         </HideKeyboard>
     )
-})
-
-const addItemForm = StyleSheet.create({
-    container: {
-        backgroundColor: 'white',
-        borderRadius: 10,
-        padding: 10,
-    },
-    inputBlock: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 10,
-        marginBottom: 5,
-    },
-    input: {
-        minWidth: '70%',
-        padding: 10,
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: 'black',
-        borderRadius: 10,
-    },
 })

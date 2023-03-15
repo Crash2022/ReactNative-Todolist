@@ -9,9 +9,10 @@ import {TaskAPIType, TaskPriorities, TaskStatuses} from '../../api/todolistsAPI'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {AppRootStateType} from '../../state/store'
 import {useSelector} from 'react-redux'
-import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {Button, Text, TouchableOpacity, View} from 'react-native'
 import {v1} from 'react-native-uuid/dist/v1'
-import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {MaterialCommunityIcons} from "@expo/vector-icons"
+import {todolistStyles} from './TodolistStyles'
 
 type TodolistPropsType = {
     todolist: TodolistDomainType
@@ -117,40 +118,4 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
             }
         </>
     )
-})
-
-const todolistStyles = StyleSheet.create({
-    container: {
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: 'black',
-        borderRadius: 10,
-        marginBottom: 10,
-    },
-    addItemBlock: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: 60,
-    },
-    editableSpan: {
-        marginBottom: 20,
-    },
-    deleteIcon: {
-        // paddingLeft: 10,
-    },
-    addItemForm: {
-        marginBottom: 10,
-    },
-    filterButtons: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 10,
-    },
-    tasksList: {
-
-    },
-    taskMessage: {
-        alignItems: 'center',
-    }
 })

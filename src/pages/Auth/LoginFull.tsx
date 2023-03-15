@@ -4,9 +4,9 @@ import {Navigate} from 'react-router-dom'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectAuthIsLoggedIn} from '../../state/selectors'
-import {Button, StyleSheet, TextInput, View} from 'react-native'
+import {Button, StyleSheet, TextInput, View, Text} from 'react-native'
 import {Checkbox} from 'expo-checkbox'
-import { useFormik } from 'formik'
+import {useFormik} from 'formik'
 
 type FormValuesType = {
     email: string
@@ -14,7 +14,7 @@ type FormValuesType = {
     rememberMe: boolean
 }
 
-export const Login = () => {
+export const LoginFull = () => {
 
     const isLoggedIn = useAppSelector(selectAuthIsLoggedIn)
     const dispatch = useAppDispatch()
@@ -53,11 +53,9 @@ export const Login = () => {
     // }
 
     return (
-        // <Formik
-        //     initialValues={{email: ''}}
-        //     onSubmit={values => console.log(values)}
-        // >
-        //     {({handleChange, handleBlur, handleSubmit, values}) => (
+        // <View>
+        //     <Text>LoginFormik</Text>
+        // </View>
 
         <View style={todolistMainStyles.loginGrid}>
             <View>
@@ -82,8 +80,7 @@ export const Login = () => {
 
                         <View>
                             <View style={todolistMainStyles.formGroupEmail}>
-                                <TextInput label="E-mail"
-                                           margin="normal"
+                                <TextInput // label="E-mail"
                                            style={{width: '252px'}}
                                            {...formik.getFieldProps('email')}
                                 />
@@ -95,11 +92,10 @@ export const Login = () => {
                             </View>
 
                             <View style={todolistMainStyles.formGroupPassword}>
-                                <TextInput label="Password"
-                                           margin="normal"
+                                <TextInput // label="Password"
                                            style={{width: '252px'}}
                                            {...formik.getFieldProps('password')}
-                                           type="password"
+                                           // type="password"
                                 />
                                 {
                                     formik.errors.password && formik.touched.password
@@ -117,15 +113,13 @@ export const Login = () => {
                             {/*      />}*/}
                             {/*/>*/}
 
-                            <Button onPress={formik.onSubmit} title='Submit'/>
+                            <Button onPress={() => {formik.handleSubmit}} title='Submit'/>
                         </View>
 
                     </View>
                 </form>
             </View>
         </View>
-        // )}
-        // </Formik>
     )
 }
 

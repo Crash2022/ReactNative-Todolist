@@ -19,6 +19,7 @@ import {createDrawerNavigator} from "@react-navigation/drawer"
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import {RootAuth} from "../pages/Auth/RootAuth";
+import {LoginFull} from '../pages/Auth/LoginFull';
 
 /*------------------------------------------------*/
 
@@ -155,7 +156,7 @@ export const Main = React.memo(() => {
                                   }}
                     />
                     <Stack.Screen name="Profile"
-                                  component={ProfileScreen}
+                                  component={LoginFull}
                                   options={{
                                       tabBarLabel: 'Profile',
                                       tabBarIcon: ({ color, size }) => (
