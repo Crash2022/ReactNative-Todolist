@@ -153,7 +153,8 @@ export const Main = React.memo(() => {
                                   }}
                     />
                     <Tab.Screen name="Profile"
-                                  component={LoginFull}
+                                  component={ProfileScreen}
+                                  // component={LoginFull}
                                   options={{
                                       tabBarLabel: 'Profile',
                                       tabBarIcon: ({ color, size }) => (
