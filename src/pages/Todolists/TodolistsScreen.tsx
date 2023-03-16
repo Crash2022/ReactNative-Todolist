@@ -1,6 +1,9 @@
 import React, {useCallback, useEffect} from 'react'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {View, Text, FlatList, TouchableOpacity, Button, ListRenderItem} from 'react-native'
+import {
+    ScrollView, View, Text, FlatList, Image, ListRenderItem,
+    TouchableOpacity, Button, Dimensions, StyleSheet
+} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectTodolists} from '../../state/selectors'
@@ -10,7 +13,12 @@ import {v1} from 'react-native-uuid/dist/v1'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {todolistsScreenStyles} from './TodolistsScreenStyles'
 import {Todolist} from '../../features/Todolist/Todolist'
-// import {TodolistItem} from "../../features/Todolist/TodolistItem"
+import {TodolistItem} from "../../features/Todolist/TodolistItem"
+// import {UserPhoto} from '../../common/assets/images/user-photo.jpg'
+
+export const {width, height} = Dimensions.get('screen')
+export const WIDTH = width
+export const HEIGHT = height
 
 export const TodolistsScreen = () => {
 
@@ -29,9 +37,9 @@ export const TodolistsScreen = () => {
     // map todolists with render function
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
-            <View style={todolistsScreenStyles.todolistList}>
-                {/*<Text>Todolist Item</Text>*/}
-                <Todolist todolist={item}/>
+            <View style={todolistListStyles.todolistList}>
+                {/*<Todolist todolist={item}/>*/}
+                <TodolistItem todolist={item}/>
             </View>
         )
     }
@@ -43,24 +51,36 @@ export const TodolistsScreen = () => {
     return (
         <SaveAreaViewWrapper>
             <View style={[globalStyles.containerFlexBetween, todolistsScreenStyles.container]}>
-                <View>
-                    <View>
-                        <Text>User photo</Text>
-                        <Text>User name</Text>
+                {/*<ScrollView>*/}
+                <View style={todolistsScreenStyles.userBlock}>
+                    <View style={todolistsScreenStyles.userInfo}>
+                        <Text style={todolistsScreenStyles.userNameStyle}>UserName</Text>
                         {/*<Text>*/}
                         {/*    You have 10 tasks in <Text style={{fontWeight: 'bold'}}>{todolists.length}</Text> todolists*/}
                         {/*</Text>*/}
-                        <Text>Today is 16 March 2023</Text>
                     </View>
                     <View>
-                        <Text>7 tasks completed</Text>
-                        <Text>3 tasks have to DO</Text>
+                        <Image
+                            style={todolistsScreenStyles.userPhoto}
+                            source={require('../../common/assets/images/user-photo.jpg')}
+                        />
                     </View>
                 </View>
 
+                <View style={todolistsScreenStyles.taskInfoBlock}>
+                    <View>
+                        <Text style={todolistsScreenStyles.taskNumber}>7</Text>
+                        <Text style={todolistsScreenStyles.taskText}>tasks completed</Text>
+                    </View>
+                    <View>
+                        <Text style={todolistsScreenStyles.taskNumber}>3</Text>
+                        <Text style={todolistsScreenStyles.taskText}>tasks have to DO</Text>
+                    </View>
+                </View>
+                <ScrollView>
                 <View style={todolistsScreenStyles.addTodoBlock}>
                     <View style={todolistsScreenStyles.addTodoBlockTitle}>
-                        <Text style={todolistsScreenStyles.addTodoBlockText}>Enter todolist title</Text>
+                        <Text style={todolistsScreenStyles.taskText}>Add new todolist</Text>
                     </View>
                     <AddItemForm addItem={addNewTodoList}/>
                 </View>
@@ -70,8 +90,8 @@ export const TodolistsScreen = () => {
                         <FlatList data={todolists}
                                   keyExtractor={item => item.id}
                                   renderItem={render}
-                            // numColumns={2} // количество колонок
-                            // columnWrapperStyle={{justifyContent: 'center'}
+                                  numColumns={2} // количество колонок
+                                  columnWrapperStyle={{justifyContent:'space-between'}}
 
                             // вариант записи с функцией внутри
                             // renderItem={({item}) => {
@@ -84,7 +104,22 @@ export const TodolistsScreen = () => {
                         />
                         : <Text>{MESSAGE_TODOS_END}</Text>
                 }
+                </ScrollView>
             </View>
         </SaveAreaViewWrapper>
     )
 }
+
+const todolistListStyles = StyleSheet.create({
+    todolistList: {
+        justifyContent: 'center',
+        height: 100,
+        // 10*2 - отнимаем паддинг с двух сторон
+        // 5*2 - и ещё отнимаем марджин с двух сторон
+        width: ((WIDTH - 10 * 2) - (5*2)) / 2,
+        padding: 10,
+        marginVertical: 5,
+        backgroundColor: '#f1eb84',
+        borderRadius: 10,
+    },
+})

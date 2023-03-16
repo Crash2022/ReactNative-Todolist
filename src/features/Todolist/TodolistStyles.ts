@@ -18,7 +18,7 @@ export const todolistStyles = StyleSheet.create({
         marginBottom: 20,
     },
     deleteIcon: {
-        // paddingLeft: 10,
+        //
     },
     addItemForm: {
         marginBottom: 10,
