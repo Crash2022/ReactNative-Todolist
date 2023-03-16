@@ -65,4 +65,13 @@ export const todolistsScreenStyles = StyleSheet.create({
     //     backgroundColor: '#f1eb84',
     //     justifyContent: 'center'
     // },
+    noTodolists: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noTodolistsText: {
+        color: 'white',
+        fontSize: 30,
+    },
 })

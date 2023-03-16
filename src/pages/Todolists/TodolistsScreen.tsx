@@ -21,7 +21,7 @@ export const HEIGHT = height
 
 export const TodolistsScreen = () => {
 
-    const MESSAGE_TODOS_END = 'No todolists'
+    const MESSAGE_TODOS_END = 'No todolists...'
 
     const dispatch = useAppDispatch()
     const todolists = useAppSelector(selectTodolists)
@@ -103,7 +103,9 @@ export const TodolistsScreen = () => {
                             //     )
                             // }}
                         />
-                        : <Text>{MESSAGE_TODOS_END}</Text>
+                        : <View style={todolistsScreenStyles.noTodolists}>
+                            <Text style={todolistsScreenStyles.noTodolistsText}>{MESSAGE_TODOS_END}</Text>
+                    </View>
                 }
                 </ScrollView>
             </View>
