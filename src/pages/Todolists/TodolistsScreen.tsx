@@ -9,7 +9,8 @@ import {createTodolistTC, getTodolistsTC, TodolistDomainType} from '../../state/
 import {v1} from 'react-native-uuid/dist/v1'
 import {Todolist} from '../../features/Todolist/Todolist'
 import {globalStyles} from '../../common/styles/GlobalStyles'
-import {todolistsScreenStyles} from './TodolistsScreenStyles';
+import {todolistsScreenStyles} from './TodolistsScreenStyles'
+import {TodolistItem} from "../../features/Todolist/TodolistItem";
 
 export const TodolistsScreen = () => {
 
@@ -29,7 +30,7 @@ export const TodolistsScreen = () => {
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
             <View style={todolistsScreenStyles.todolistList}>
-                <Todolist todolist={item}/>
+                <TodolistItem todolist={item}/>
             </View>
         )
     }
@@ -45,7 +46,9 @@ export const TodolistsScreen = () => {
                     <View>
                         <View>User photo</View>
                         <View>User name</View>
-                        <View>You have 10 tasks in 3 todolists</View>
+                        <View>
+                            You have 10 tasks in <Text style={{fontWeight: 'bold'}}>{todolists.length}</Text> todolists
+                        </View>
                         <View>Today is 16 March 2023</View>
                     </View>
                     <View>
@@ -79,7 +82,6 @@ export const TodolistsScreen = () => {
                             // }}
                         />
                         : <Text>{MESSAGE_TODOS_END}</Text>
-
                 }
 
             </View>

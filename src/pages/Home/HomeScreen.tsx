@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, Button, StyleSheet, TouchableOpacity, Dimensions} from 'react-native'
+import {View, Text, Button, TouchableOpacity, Dimensions} from 'react-native'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {HomeProps} from '../../common/types/NavigationTypes'
