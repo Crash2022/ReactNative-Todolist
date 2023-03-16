@@ -8,8 +8,8 @@ import {HomeScreen} from "../pages/Home/HomeScreen"
 import {TodolistsScreen} from '../pages/Todolists/TodolistsScreen'
 import {ProfileScreen} from '../pages/Profile/ProfileScreen'
 import {SettingsScreen} from "../pages/Settings/SettingsScreen"
-import {RootAuth} from "../pages/Auth/RootAuth"
-import {LoginFull} from '../pages/Auth/LoginFull'
+import {RootAuth} from "../features/Auth/RootAuth"
+import {LoginFull} from '../features/Auth/LoginFull'
 import {SafeAreaProvider} from "react-native-safe-area-context"
 import {NavigationContainer} from "@react-navigation/native"
 import {RootStackParamList} from "../common/types/NavigationTypes"
@@ -125,24 +125,24 @@ export const Main = React.memo(() => {
             {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
             <SafeAreaProvider>
                 <Tab.Navigator>
-                    <Tab.Screen name="Auth"
-                                  component={RootAuth}
-                                  options={{
-                                      tabBarLabel: 'Auth',
-                                      tabBarIcon: ({ color, size }) => (
-                                          <MaterialCommunityIcons name="home" color={color} size={size}/>
-                                      ),
-                                  }}
-                    />
-                    {/*<Tab.Screen name="Home"*/}
-                    {/*              component={HomeScreen}*/}
+                    {/*<Tab.Screen name="Auth"*/}
+                    {/*              component={RootAuth}*/}
                     {/*              options={{*/}
-                    {/*                  tabBarLabel: 'Home',*/}
+                    {/*                  tabBarLabel: 'Auth',*/}
                     {/*                  tabBarIcon: ({ color, size }) => (*/}
                     {/*                      <MaterialCommunityIcons name="home" color={color} size={size}/>*/}
                     {/*                  ),*/}
                     {/*              }}*/}
                     {/*/>*/}
+                    <Tab.Screen name="Home"
+                                  component={HomeScreen}
+                                  options={{
+                                      tabBarLabel: 'Home',
+                                      tabBarIcon: ({ color, size }) => (
+                                          <MaterialCommunityIcons name="home" color={color} size={size}/>
+                                      ),
+                                  }}
+                    />
                     <Tab.Screen name="Todolists"
                                   component={TodolistsScreen}
                                   options={{

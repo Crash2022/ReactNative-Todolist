@@ -21,9 +21,9 @@ export type RootAuthScreenProps = CompositeScreenProps<
     BottomTabScreenProps<RootStackParamList, 'Auth'>,
     StackScreenProps<RootAuthParamList>>
 
-export type RootAuthProps = NativeStackScreenProps<RootStackParamList, 'Auth'>
+// export type RootAuthProps = NativeStackScreenProps<RootStackParamList, 'Auth'>
+// export type SettingsProps = NativeStackScreenProps<RootStackParamList, 'LoginFull'>
 export type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>
 export type TodolistsProps = NativeStackScreenProps<RootStackParamList, 'Todolists'>
-// export type SettingsProps = NativeStackScreenProps<RootStackParamList, 'LoginFull'>
 export type SettingsProps = NativeStackScreenProps<RootStackParamList, 'Settings'>
 export type ProfileProps = NativeStackScreenProps<RootStackParamList, 'Profile'>

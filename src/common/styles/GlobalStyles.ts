@@ -28,4 +28,13 @@ export const globalStyles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
     },
-});
+})
+
+export const appStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#f9f4ef',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+    },
+})

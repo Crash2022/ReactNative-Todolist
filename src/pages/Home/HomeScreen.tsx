@@ -3,7 +3,8 @@ import {View, Text, Button, StyleSheet, TouchableOpacity, Dimensions} from 'reac
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {HomeProps} from '../../common/types/NavigationTypes'
-import {FontAwesome, Ionicons} from '@expo/vector-icons'
+import {FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons'
+import {homeStyles} from "./HomeStyles"
 
 // функция отдаёт значения размера экрана
 // (можно использовать для вычисления размера блоков в стилях)
@@ -25,33 +26,23 @@ export const HomeScreen = ({navigation}: HomeProps) => {
                                      onPress={() => navigation.navigate('Todolists')}
                         />
                     </TouchableOpacity>
-                    <Text>Todolists</Text>
+                    <Text>Login</Text>
                     {/*<Button title={'Go Todolists'}*/}
                     {/*        onPress={() => navigation.navigate('Todolists')}*/}
                     {/*/>*/}
                 </View>
                 <View style={homeStyles.icons}>
                     <TouchableOpacity>
-                        <Ionicons name="settings-sharp" size={100} color="green"
-                                  onPress={() => navigation.navigate('Settings')}
+                        <MaterialCommunityIcons name="location-enter" size={24} color="green"
+                                  onPress={() => navigation.navigate('Profile')}
                         />
                     </TouchableOpacity>
-                    <Text>Settings</Text>
-                    {/*<Button title={'Go Settings'}*/}
-                    {/*        onPress={() => navigation.navigate('Settings')}*/}
+                    <Text>Registration</Text>
+                    {/*<Button title={'Go Profile'}*/}
+                    {/*        onPress={() => navigation.navigate('Profile')}*/}
                     {/*/>*/}
                 </View>
             </View>
         </SaveAreaViewWrapper>
     )
 }
-
-// styles
-const homeStyles = StyleSheet.create({
-    title: {
-        fontSize: 24,
-    },
-    icons: {
-        alignItems: 'center',
-    },
-});

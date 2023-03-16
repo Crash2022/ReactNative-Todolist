@@ -6,12 +6,12 @@ export const Login = ({navigation}: RootAuthScreenProps) => {
     return (
         <View>
             <Text>
-                Profile Page
+                Login Page
             </Text>
-            <Button title={'Go Registration'}
-                    onPress={() => navigation.navigate('Auth', {screen: 'Registration',
-                        params: {id: 100, name: 'Alexander'}})}
-            />
+            {/*<Button title={'Go Registration'}*/}
+            {/*        onPress={() => navigation.navigate('Auth', {screen: 'Registration',*/}
+            {/*            params: {id: 100, name: 'Alexander'}})}*/}
+            {/*/>*/}
         </View>
     )
 }

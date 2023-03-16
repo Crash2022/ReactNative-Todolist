@@ -73,21 +73,21 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
     /*------------------------------------------------*/
 
     return (
-        <>
+        <View>
             <View style={todolistStyles.addItemBlock}>
                 <View style={todolistStyles.editableSpan}>
                     <EditableSpan title={todolist.title} onChangeInput={changeTodolistTitleHandler}/>
                 </View>
 
-                <View>
-                    <TouchableOpacity style={todolistStyles.deleteIcon}>
-                        <MaterialCommunityIcons name="delete-variant"
-                                                size={30} color="orange"
-                                                onPress={removeTodolistHandler}
-                                                // disabled={todolist.entityStatus === 'loading'}
-                        />
-                    </TouchableOpacity>
-                </View>
+                {/*<View>*/}
+                {/*    <TouchableOpacity style={todolistStyles.deleteIcon}>*/}
+                {/*        <MaterialCommunityIcons name="delete-variant"*/}
+                {/*                                size={30} color="orange"*/}
+                {/*                                onPress={removeTodolistHandler}*/}
+                {/*                                // disabled={todolist.entityStatus === 'loading'}*/}
+                {/*        />*/}
+                {/*    </TouchableOpacity>*/}
+                {/*</View>*/}
             </View>
 
             <View style={todolistStyles.addItemForm}>
@@ -116,6 +116,6 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
             {
                 tasksObj.length === 0 ? <View style={todolistStyles.taskMessage}><Text>{MESSAGE_TASKS_END}</Text></View> : ''
             }
-        </>
+        </View>
     )
 })

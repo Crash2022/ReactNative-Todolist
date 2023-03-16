@@ -25,7 +25,7 @@ export const TodolistsScreen = () => {
         }))
     }, [dispatch])
 
-    // map todolists
+    // map todolists with render function
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
             <View style={todolistsScreenStyles.todolistList}>
@@ -40,56 +40,49 @@ export const TodolistsScreen = () => {
 
     return (
         <SaveAreaViewWrapper>
-            {/*<ScrollView>*/}
             <View style={globalStyles.containerFlexBetween}>
-                {/*<View>*/}
-                {/*    /!*<TouchableOpacity>*!/*/}
-                {/*    <Button title={'Go to Settings'} onPress={() => navigation.navigate('Settings')}/>*/}
-                {/*    /!*</TouchableOpacity>*!/*/}
-                {/*</View>*/}
+                <View>
+                    <View>
+                        <View>User photo</View>
+                        <View>User name</View>
+                        <View>You have 10 tasks in 3 todolists</View>
+                        <View>Today is 16 March 2023</View>
+                    </View>
+                    <View>
+                        <View>7 tasks completed</View>
+                        <View>3 tasks have to DO</View>
+                    </View>
+                </View>
+
                 <View style={todolistsScreenStyles.addTodoBlock}>
                     <View style={todolistsScreenStyles.addTodoBlockTitle}>
                         <Text style={todolistsScreenStyles.addTodoBlockText}>Enter todolist title</Text>
                     </View>
                     <AddItemForm addItem={addNewTodoList}/>
                 </View>
+
                 {
                     todolists.length !== 0 ?
-                        // <ScrollView>
-                        //     {
-                        //         todolists.map((todo: any) => {
-                        //             return (
-                        //                 <View key={todo.id}
-                        //                       style={todolistMainStyles.todolistList}
-                        //                 >
-                        //                     <Todolist todolist={todo}/>
-                        //                 </View>
-                        //             )
-                        //         })
-                        //     }
-                        // </ScrollView>
-                        // : <Text>{MESSAGE_TODOS_END}</Text>
-
                         <FlatList data={todolists}
                                   keyExtractor={item => item.id}
                                   renderItem={render}
-                                  // numColumns={2} // количество колонок
-                                  // columnWrapperStyle={{justifyContent: 'center'}
+                            // numColumns={2} // количество колонок
+                            // columnWrapperStyle={{justifyContent: 'center'}
 
-                                  // вариант записи с функцией внутри
-                                  // renderItem={({item}) => {
-                                  //     return (
-                                  //         <View style={todolistMainStyles.todolistList}>
-                                  //             <Todolist todolist={item}/>
-                                  //         </View>
-                                  //     )
-                                  // }}
+                            // вариант записи с функцией внутри
+                            // renderItem={({item}) => {
+                            //     return (
+                            //         <View style={todolistMainStyles.todolistList}>
+                            //             <Todolist todolist={item}/>
+                            //         </View>
+                            //     )
+                            // }}
                         />
                         : <Text>{MESSAGE_TODOS_END}</Text>
 
                 }
+
             </View>
-            {/*</ScrollView>*/}
         </SaveAreaViewWrapper>
     )
 }
