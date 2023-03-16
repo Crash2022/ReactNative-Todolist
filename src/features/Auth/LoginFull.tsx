@@ -7,6 +7,7 @@ import {selectAuthIsLoggedIn} from '../../state/selectors'
 import {Button, StyleSheet, TextInput, View, Text} from 'react-native'
 import {Checkbox} from 'expo-checkbox'
 import {useFormik} from 'formik'
+import {Link} from '@react-navigation/native';
 
 type FormValuesType = {
     email: string
@@ -53,29 +54,24 @@ export const LoginFull = () => {
     // }
 
     return (
-        // <View>
-        //     <Text>LoginFormik</Text>
-        // </View>
-
         <View style={todolistMainStyles.loginGrid}>
             <View>
                 <form onSubmit={formik.handleSubmit} style={todolistMainStyles.form}>
                     <View>
                         {/*<View style={todolistMainStyles.formLabel}>*/}
                         <View>
-                            <p>
-                                To login get registered <a href={'https://social-network.samuraijs.com'}
-                                                           target={'_blank'}>here</a>
-                            </p>
-                            <p>
+                            <Text>
+                                To login get registered <Link to={'https://social-network.samuraijs.com'}>here</Link>
+                            </Text>
+                            <Text>
                                 or use common account credentials
-                            </p>
-                            <p>
-                                <b>E-mail:</b> free@samuraijs.com
-                            </p>
-                            <p>
-                                <b>Password:</b> free
-                            </p>
+                            </Text>
+                            <Text>
+                                <Text>E-mail:</Text> free@samuraijs.com
+                            </Text>
+                            <Text>
+                                <Text>Password:</Text> free
+                            </Text>
                         </View>
 
                         <View>

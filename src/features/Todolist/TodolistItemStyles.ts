@@ -5,12 +5,11 @@ export const todolistItemStyles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        // gap: 10,
     },
     itemTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        maxWidth: 120,
+        maxWidth: 80,
         wordBreak: 'break-word'
     },
 })

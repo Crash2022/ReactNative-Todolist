@@ -1,8 +1,7 @@
 import React, {useCallback} from 'react'
 import {deleteTodolistTC, TodolistDomainType} from '../../state/todolists-reducer'
-import {Button, Text, TouchableOpacity, View} from 'react-native'
+import {Text, TouchableOpacity, View} from 'react-native'
 import {todolistItemStyles} from "./TodolistItemStyles"
-import {globalStyles} from "../../common/styles/GlobalStyles"
 import {todolistStyles} from "./TodolistStyles"
 import {MaterialCommunityIcons} from "@expo/vector-icons"
 import {useAppDispatch} from "../../common/hooks/useAppDispatch"
@@ -23,6 +22,8 @@ export const TodolistItem: React.FC<TodolistPropsType> = React.memo(({todolist})
         dispatch(deleteTodolistTC(todolist.id))
     }, [todolist.id])
 
+    console.log(todolist)
+
     return (
         <View style={todolistItemStyles.item}>
             <View>
@@ -32,7 +33,7 @@ export const TodolistItem: React.FC<TodolistPropsType> = React.memo(({todolist})
             <View>
                 <TouchableOpacity style={todolistStyles.deleteIcon}>
                     <MaterialCommunityIcons name="delete-variant"
-                                            size={30} color="#3598fd"
+                                            size={30} color="red"
                                             onPress={removeTodolistHandler}
                                             // disabled={todolist.entityStatus === 'loading'}
                     />

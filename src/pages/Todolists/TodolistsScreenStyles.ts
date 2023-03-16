@@ -1,8 +1,9 @@
 import {StyleSheet} from 'react-native'
-import {WIDTH} from './TodolistsScreen'
 
 export const todolistsScreenStyles = StyleSheet.create({
     container: {
+        flex: 1,
+        paddingHorizontal: 10,
         backgroundColor: '#242132',
     },
     userBlock: {

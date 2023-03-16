@@ -1,9 +1,7 @@
 import React, {useCallback, useEffect} from 'react'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {
-    ScrollView, View, Text, FlatList, Image, ListRenderItem,
-    TouchableOpacity, Button, Dimensions, StyleSheet
-} from 'react-native'
+import {ScrollView, View, Text, FlatList, Image, ListRenderItem,
+    TouchableOpacity, Button, Dimensions, StyleSheet} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectTodolists} from '../../state/selectors'
@@ -16,6 +14,7 @@ import {Todolist} from '../../features/Todolist/Todolist'
 import {TodolistItem} from "../../features/Todolist/TodolistItem"
 // import {UserPhoto} from '../../common/assets/images/user-photo.jpg'
 
+// функция отдаёт значения размера экрана
 export const {width, height} = Dimensions.get('screen')
 export const WIDTH = width
 export const HEIGHT = height
@@ -37,10 +36,12 @@ export const TodolistsScreen = () => {
     // map todolists with render function
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
-            <View style={todolistListStyles.todolistList}>
-                {/*<Todolist todolist={item}/>*/}
-                <TodolistItem todolist={item}/>
-            </View>
+            <TouchableOpacity>
+                <View style={todolistListStyles.todolistList}>
+                    {/*<Todolist todolist={item}/>*/}
+                    <TodolistItem todolist={item}/>
+                </View>
+            </TouchableOpacity>
         )
     }
 
@@ -50,7 +51,7 @@ export const TodolistsScreen = () => {
 
     return (
         <SaveAreaViewWrapper>
-            <View style={[globalStyles.containerFlexBetween, todolistsScreenStyles.container]}>
+            <View style={todolistsScreenStyles.container}>
                 {/*<ScrollView>*/}
                 <View style={todolistsScreenStyles.userBlock}>
                     <View style={todolistsScreenStyles.userInfo}>
@@ -113,13 +114,17 @@ export const TodolistsScreen = () => {
 const todolistListStyles = StyleSheet.create({
     todolistList: {
         justifyContent: 'center',
-        height: 100,
         // 10*2 - отнимаем паддинг с двух сторон
         // 5*2 - и ещё отнимаем марджин с двух сторон
-        width: ((WIDTH - 10 * 2) - (5*2)) / 2,
+        width: (WIDTH - 20 - 10) / 2,
+        // height: ((WIDTH - 10 * 2) - (5*2)) / 2,
+        height: 100,
         padding: 10,
-        marginVertical: 5,
+        marginVertical: 10,
         backgroundColor: '#f1eb84',
+        // backgroundColor: '#3598fd',
+        // backgroundColor: '#5772ff',
+        // backgroundColor: '#614dff',
         borderRadius: 10,
     },
 })
