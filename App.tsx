@@ -4,13 +4,19 @@ import {Main} from './src/app/Main'
 import {store} from './src/state/store'
 import {Provider} from 'react-redux'
 import {appStyles} from './src/common/styles/GlobalStyles'
+import {NavigationContainer} from "@react-navigation/native"
+import {SafeAreaProvider} from "react-native-safe-area-context"
 
-export const App = () =>  {
+export const App = () => {
     return (
-        <Provider store={store}>
-            <View style={appStyles.container}>
-                <Main/>
-            </View>
-        </Provider>
+        <NavigationContainer>
+            <SafeAreaProvider>
+                <Provider store={store}>
+                    <View style={appStyles.container}>
+                        <Main/>
+                    </View>
+                </Provider>
+            </SafeAreaProvider>
+        </NavigationContainer>
     )
 }

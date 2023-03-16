@@ -17,6 +17,7 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import {createDrawerNavigator} from "@react-navigation/drawer"
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
+import {View} from "react-native"
 
 /*------------------------------------------------*/
 
@@ -117,62 +118,63 @@ export const Main = React.memo(() => {
     /*------------------------------------------------*/
 
     return (
-        <NavigationContainer>
+        <>
+            {/*// <NavigationContainer>*/}
             {/*<View style={{flex: 1}}>*/}
             {/*<Routes>*/}
             {/*<Route element={<PrivateRoutes/>}>*/}
             {/*    <Route path={'/'} element={<Navigate to={PATH.APP.TODOLISTS}/>}/>*/}
             {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
-            <SafeAreaProvider>
-                <Tab.Navigator>
-                    {/*<Tab.Screen name="Auth"*/}
-                    {/*              component={RootAuth}*/}
-                    {/*              options={{*/}
-                    {/*                  tabBarLabel: 'Auth',*/}
-                    {/*                  tabBarIcon: ({ color, size }) => (*/}
-                    {/*                      <MaterialCommunityIcons name="home" color={color} size={size}/>*/}
-                    {/*                  ),*/}
-                    {/*              }}*/}
-                    {/*/>*/}
-                    <Tab.Screen name="Home"
-                                  component={HomeScreen}
-                                  options={{
-                                      tabBarLabel: 'Home',
-                                      tabBarIcon: ({ color, size }) => (
-                                          <MaterialCommunityIcons name="home" color={color} size={size}/>
-                                      ),
-                                  }}
-                    />
-                    <Tab.Screen name="Todolists"
-                                  component={TodolistsScreen}
-                                  options={{
-                                      tabBarLabel: 'Todolists',
-                                      tabBarIcon: ({ color, size }) => (
-                                          <FontAwesome name="list-alt" size={size} color={color}/>
-                                      ),
-                                  }}
-                    />
-                    <Tab.Screen name="Profile"
-                                  component={ProfileScreen}
-                                  // component={LoginFull}
-                                  options={{
-                                      tabBarLabel: 'Profile',
-                                      tabBarIcon: ({ color, size }) => (
-                                          <FontAwesome name="user-circle-o" size={size} color={color}/>
-                                      ),
-                                  }}
-                    />
-                    <Tab.Screen name="Settings"
-                                  component={SettingsScreen}
-                                  options={{
-                                      tabBarLabel: 'Settings',
-                                      tabBarIcon: ({ color, size }) => (
-                                          <Ionicons name="settings-sharp" size={size} color={color}/>
-                                      ),
-                                  }}
-                    />
-                </Tab.Navigator>
-            </SafeAreaProvider>
+            {/*// <SafeAreaProvider>*/}
+            <Tab.Navigator>
+                {/*<Tab.Screen name="Auth"*/}
+                {/*              component={RootAuth}*/}
+                {/*              options={{*/}
+                {/*                  tabBarLabel: 'Auth',*/}
+                {/*                  tabBarIcon: ({ color, size }) => (*/}
+                {/*                      <MaterialCommunityIcons name="home" color={color} size={size}/>*/}
+                {/*                  ),*/}
+                {/*              }}*/}
+                {/*/>*/}
+                <Tab.Screen name="Home"
+                            component={HomeScreen}
+                            options={{
+                                tabBarLabel: 'Home',
+                                tabBarIcon: ({color, size}) => (
+                                    <MaterialCommunityIcons name="home" color={color} size={size}/>
+                                ),
+                            }}
+                />
+                <Tab.Screen name="Todolists"
+                            component={TodolistsScreen}
+                            options={{
+                                tabBarLabel: 'Todolists',
+                                tabBarIcon: ({color, size}) => (
+                                    <FontAwesome name="list-alt" size={size} color={color}/>
+                                ),
+                            }}
+                />
+                <Tab.Screen name="Profile"
+                            component={ProfileScreen}
+                    // component={LoginFull}
+                            options={{
+                                tabBarLabel: 'Profile',
+                                tabBarIcon: ({color, size}) => (
+                                    <FontAwesome name="user-circle-o" size={size} color={color}/>
+                                ),
+                            }}
+                />
+                <Tab.Screen name="Settings"
+                            component={SettingsScreen}
+                            options={{
+                                tabBarLabel: 'Settings',
+                                tabBarIcon: ({color, size}) => (
+                                    <Ionicons name="settings-sharp" size={size} color={color}/>
+                                ),
+                            }}
+                />
+            </Tab.Navigator>
+            {/*// </SafeAreaProvider>*/}
             {/*<TodolistMain demo={demo}/>*/}
             {/*</Route>*/}
 
@@ -182,6 +184,7 @@ export const Main = React.memo(() => {
             {/*</Routes>*/}
             {/*</View>*/}
             {/*// </View>*/}
-        </NavigationContainer>
+            {/*// </NavigationContainer>*/}
+        </>
     )
 })
