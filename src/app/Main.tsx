@@ -18,6 +18,7 @@ import {createDrawerNavigator} from "@react-navigation/drawer"
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import {View} from "react-native"
+import {appStyles} from "../common/styles/GlobalStyles"
 
 /*------------------------------------------------*/
 
@@ -118,7 +119,7 @@ export const Main = React.memo(() => {
     /*------------------------------------------------*/
 
     return (
-        <>
+        <View style={appStyles.container}>
             {/*// <NavigationContainer>*/}
             {/*<View style={{flex: 1}}>*/}
             {/*<Routes>*/}
@@ -185,6 +186,6 @@ export const Main = React.memo(() => {
             {/*</View>*/}
             {/*// </View>*/}
             {/*// </NavigationContainer>*/}
-        </>
+        </View>
     )
 })
