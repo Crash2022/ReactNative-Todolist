@@ -12,7 +12,7 @@ export const SettingsScreen = ({navigation}: SettingsProps) => {
                 <Text>
                     Settings Page
                 </Text>
-                {/*<Button title={'Go Profile'}*/}
+                {/*<Button title={'Go Todolists'}*/}
                 {/*        onPress={() => navigation.navigate('Todolists')}*/}
                 {/*/>*/}
             </View>

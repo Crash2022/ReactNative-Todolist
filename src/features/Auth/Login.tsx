@@ -1,8 +1,8 @@
 import React from "react"
 import {View, Text, Button} from "react-native"
-import {RootAuthScreenProps} from "../../common/types/NavigationTypes"
+// import {RootAuthScreenProps} from "../../common/types/NavigationTypes"
 
-export const Login = ({navigation}: RootAuthScreenProps) => {
+export const Login = (/*{navigation}: RootAuthScreenProps*/) => {
     return (
         <View>
             <Text>

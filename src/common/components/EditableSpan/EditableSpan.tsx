@@ -60,7 +60,9 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title,
                         <View>
                             <TextInput
                                 value={inputTitle}
-                                onChangeText={(newTitle: string) => {setInputTitle(newTitle)}}
+                                onChangeText={(newTitle: string) => {
+                                    setInputTitle(newTitle)
+                                }}
                                 style={editableSpanStyles.input}
                                 // disabled={status === 'loading'}
                                 // error={!!error}
@@ -82,9 +84,6 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title,
                         {/*/>*/}
                     </View>
                     : <View><Text style={editableSpanStyles.text} onPress={() => {setEditMode(true)}}>{title}</Text></View>
-
-                // : <Text onPress={onClickEditSpanHandler} className={s.textSpan}>{title}</Text>
-                // : <span onDoubleClick={onClickEditSpanHandler} className={s.textSpan}>{title}</span>
             }
         </View>
     )

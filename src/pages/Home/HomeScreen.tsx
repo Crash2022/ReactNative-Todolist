@@ -3,7 +3,7 @@ import {View, Text, Button, TouchableOpacity, Dimensions} from 'react-native'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {HomeProps} from '../../common/types/NavigationTypes'
-import {FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons'
+import {MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons'
 import {homeStyles} from "./HomeStyles"
 
 // функция отдаёт значения размера экрана
@@ -17,13 +17,15 @@ export const HomeScreen = ({navigation}: HomeProps) => {
     return (
         <SaveAreaViewWrapper>
             <View style={globalStyles.containerFlexEvenly}>
-                <Text style={homeStyles.title}>
-                    Welcome to TodolistsApp
-                </Text>
+                <View>
+                    <Text style={homeStyles.title}>
+                        Welcome to TodolistsApp
+                    </Text>
+                </View>
                 <View style={homeStyles.icons}>
                     <TouchableOpacity>
-                        <FontAwesome name="list-alt" size={100} color="green"
-                                     onPress={() => navigation.navigate('Todolists')}
+                        <MaterialCommunityIcons name="location-enter" size={100} color="green"
+                                     //onPress={() => navigation.navigate('Login')}
                         />
                     </TouchableOpacity>
                     <Text>Login</Text>
@@ -33,8 +35,8 @@ export const HomeScreen = ({navigation}: HomeProps) => {
                 </View>
                 <View style={homeStyles.icons}>
                     <TouchableOpacity>
-                        <MaterialCommunityIcons name="location-enter" size={24} color="green"
-                                  onPress={() => navigation.navigate('Profile')}
+                        <MaterialIcons name="app-registration" size={100} color="green"
+                                  //onPress={() => navigation.navigate('Registration')}
                         />
                     </TouchableOpacity>
                     <Text>Registration</Text>

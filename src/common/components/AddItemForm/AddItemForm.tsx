@@ -1,8 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import {View, Text, TouchableOpacity, TextInput} from 'react-native'
 import {MaterialIcons} from '@expo/vector-icons'
-import {HideKeyboard} from '../../../../App'
 import {addItemFormStyles} from './AddItemFormStyles';
+import {HideKeyboard} from '../HideKeyboard/HideKeyboard';
 
 type AddItemFormPropsType = {
     addItem: (titleInput: string) => void
@@ -49,7 +49,7 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
                                    setInputValue(newTitle)
                                }}
                                style={addItemFormStyles.input}
-                        // disabled={disabled}
+                                // disabled={disabled}
                     />
 
                     {/*<TextField variant="outlined"*/}

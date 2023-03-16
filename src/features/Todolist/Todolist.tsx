@@ -38,9 +38,9 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
         dispatch(updateTodolistTitleTC(todolist.id, newInputValue))
     }, [todolist.id])
 
-    const removeTodolistHandler = useCallback(() => {
-        dispatch(deleteTodolistTC(todolist.id))
-    }, [todolist.id])
+    // const removeTodolistHandler = useCallback(() => {
+    //     dispatch(deleteTodolistTC(todolist.id))
+    // }, [todolist.id])
 
     /*------------------------------------------------*/
 

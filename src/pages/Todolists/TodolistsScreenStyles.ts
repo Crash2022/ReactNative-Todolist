@@ -1,8 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native'
 
 export const todolistsScreenStyles = StyleSheet.create({
     container: {
-        //
+        backgroundColor: '#242132',
     },
     addTodoBlock: {
         alignItems: 'center',

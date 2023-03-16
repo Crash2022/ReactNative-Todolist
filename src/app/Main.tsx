@@ -4,21 +4,20 @@ import {PATH} from '../api/path'
 // import {Login} from '../features/Login.tsx/Login'
 // import {Error404} from '../common/components/Error404/Error404'
 // import {PrivateRoutes} from '../common/components/PrivateRoutes/PrivateRoutes'
-import {HomeScreen} from "../pages/Home/HomeScreen"
+import {HomeScreen} from '../pages/Home/HomeScreen'
 import {TodolistsScreen} from '../pages/Todolists/TodolistsScreen'
 import {ProfileScreen} from '../pages/Profile/ProfileScreen'
-import {SettingsScreen} from "../pages/Settings/SettingsScreen"
-import {RootAuth} from "../features/Auth/RootAuth"
-import {LoginFull} from '../features/Auth/LoginFull'
-import {SafeAreaProvider} from "react-native-safe-area-context"
-import {NavigationContainer} from "@react-navigation/native"
-import {RootStackParamList} from "../common/types/NavigationTypes"
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
-import {createDrawerNavigator} from "@react-navigation/drawer"
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import {SettingsScreen} from '../pages/Settings/SettingsScreen'
+// import {RootAuth} from '../features/Auth/RootAuth'
+// import {LoginFull} from '../features/Auth/LoginFull'
+import {RootStackParamList} from '../common/types/NavigationTypes'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+// import {createDrawerNavigator} from '@react-navigation/drawer'
+// import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
-import {View} from "react-native"
-import {appStyles} from "../common/styles/GlobalStyles"
+import {View} from 'react-native'
+import {Login} from '../features/Auth/Login'
+import {globalStyles} from '../common/styles/GlobalStyles';
 
 /*------------------------------------------------*/
 
@@ -72,9 +71,9 @@ import {appStyles} from "../common/styles/GlobalStyles"
 
 /*------------------------------------------------*/
 
-// const Stack = createNativeStackNavigator<RootStackParamList>()
-const Tab = createBottomTabNavigator<RootStackParamList>()
-// const Drawer = createDrawerNavigator()
+// const Stack = createNativeStackNavigator<RootStackParamList>() // Stack
+const Stack = createBottomTabNavigator<RootStackParamList>() // Tab
+// const Stack = createDrawerNavigator<RootStackParamList>() // Drawer
 
 export const Main = React.memo(() => {
 
@@ -119,16 +118,9 @@ export const Main = React.memo(() => {
     /*------------------------------------------------*/
 
     return (
-        <View style={appStyles.container}>
-            {/*// <NavigationContainer>*/}
-            {/*<View style={{flex: 1}}>*/}
-            {/*<Routes>*/}
-            {/*<Route element={<PrivateRoutes/>}>*/}
-            {/*    <Route path={'/'} element={<Navigate to={PATH.APP.TODOLISTS}/>}/>*/}
-            {/*    <Route path={PATH.APP.TODOLISTS} element={<TodolistMain demo={demo}/>}/>*/}
-            {/*// <SafeAreaProvider>*/}
-            <Tab.Navigator>
-                {/*<Tab.Screen name="Auth"*/}
+        <View style={globalStyles.container}>
+            <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
+                {/*<Stack.Screen name="Auth"*/}
                 {/*              component={RootAuth}*/}
                 {/*              options={{*/}
                 {/*                  tabBarLabel: 'Auth',*/}
@@ -137,55 +129,43 @@ export const Main = React.memo(() => {
                 {/*                  ),*/}
                 {/*              }}*/}
                 {/*/>*/}
-                <Tab.Screen name="Home"
-                            component={HomeScreen}
-                            options={{
-                                tabBarLabel: 'Home',
-                                tabBarIcon: ({color, size}) => (
-                                    <MaterialCommunityIcons name="home" color={color} size={size}/>
-                                ),
-                            }}
+                <Stack.Screen name="Home"
+                              component={HomeScreen}
+                              options={{
+                                  tabBarLabel: 'Home',
+                                  tabBarIcon: ({color, size}) => (
+                                      <MaterialCommunityIcons name="home" color={color} size={size}/>
+                                  ),
+                              }}
                 />
-                <Tab.Screen name="Todolists"
-                            component={TodolistsScreen}
-                            options={{
-                                tabBarLabel: 'Todolists',
-                                tabBarIcon: ({color, size}) => (
-                                    <FontAwesome name="list-alt" size={size} color={color}/>
-                                ),
-                            }}
+                <Stack.Screen name="Todolists"
+                              component={TodolistsScreen}
+                              options={{
+                                  tabBarLabel: 'Todolists',
+                                  tabBarIcon: ({color, size}) => (
+                                      <FontAwesome name="list-alt" size={size} color={color}/>
+                                  ),
+                              }}
                 />
-                <Tab.Screen name="Profile"
-                            component={ProfileScreen}
-                    // component={LoginFull}
-                            options={{
-                                tabBarLabel: 'Profile',
-                                tabBarIcon: ({color, size}) => (
-                                    <FontAwesome name="user-circle-o" size={size} color={color}/>
-                                ),
-                            }}
+                <Stack.Screen name="Profile"
+                              component={ProfileScreen}
+                              options={{
+                                  tabBarLabel: 'Profile',
+                                  tabBarIcon: ({color, size}) => (
+                                      <FontAwesome name="user-circle-o" size={size} color={color}/>
+                                  ),
+                              }}
                 />
-                <Tab.Screen name="Settings"
-                            component={SettingsScreen}
-                            options={{
-                                tabBarLabel: 'Settings',
-                                tabBarIcon: ({color, size}) => (
-                                    <Ionicons name="settings-sharp" size={size} color={color}/>
-                                ),
-                            }}
+                <Stack.Screen name="Settings"
+                              component={SettingsScreen}
+                              options={{
+                                  tabBarLabel: 'Settings',
+                                  tabBarIcon: ({color, size}) => (
+                                      <Ionicons name="settings-sharp" size={size} color={color}/>
+                                  ),
+                              }}
                 />
-            </Tab.Navigator>
-            {/*// </SafeAreaProvider>*/}
-            {/*<TodolistMain demo={demo}/>*/}
-            {/*</Route>*/}
-
-            {/*<Route path={PATH.COMMON.LOGIN} element={<Login.tsx/>}/>*/}
-            {/*<Route path={PATH.COMMON.ERROR404} element={<Error404/>}/>*/}
-            {/*<Route path={'*'} element={<Navigate to={PATH.COMMON.ERROR404}/>}/>*/}
-            {/*</Routes>*/}
-            {/*</View>*/}
-            {/*// </View>*/}
-            {/*// </NavigationContainer>*/}
+            </Stack.Navigator>
         </View>
     )
 })

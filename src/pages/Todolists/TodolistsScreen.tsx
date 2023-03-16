@@ -1,16 +1,16 @@
 import React, {useCallback, useEffect} from 'react'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {ScrollView, View, Text, FlatList, TouchableOpacity, Button, ListRenderItem} from 'react-native'
+import {View, Text, FlatList, TouchableOpacity, Button, ListRenderItem} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectTodolists} from '../../state/selectors'
 import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
 import {createTodolistTC, getTodolistsTC, TodolistDomainType} from '../../state/todolists-reducer'
 import {v1} from 'react-native-uuid/dist/v1'
-import {Todolist} from '../../features/Todolist/Todolist'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {todolistsScreenStyles} from './TodolistsScreenStyles'
-import {TodolistItem} from "../../features/Todolist/TodolistItem";
+import {Todolist} from '../../features/Todolist/Todolist'
+// import {TodolistItem} from "../../features/Todolist/TodolistItem"
 
 export const TodolistsScreen = () => {
 
@@ -30,7 +30,8 @@ export const TodolistsScreen = () => {
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
             <View style={todolistsScreenStyles.todolistList}>
-                <TodolistItem todolist={item}/>
+                {/*<Text>Todolist Item</Text>*/}
+                <Todolist todolist={item}/>
             </View>
         )
     }
@@ -41,19 +42,19 @@ export const TodolistsScreen = () => {
 
     return (
         <SaveAreaViewWrapper>
-            <View style={globalStyles.containerFlexBetween}>
+            <View style={[globalStyles.containerFlexBetween, todolistsScreenStyles.container]}>
                 <View>
                     <View>
-                        <View>User photo</View>
-                        <View>User name</View>
-                        <View>
-                            You have 10 tasks in <Text style={{fontWeight: 'bold'}}>{todolists.length}</Text> todolists
-                        </View>
-                        <View>Today is 16 March 2023</View>
+                        <Text>User photo</Text>
+                        <Text>User name</Text>
+                        {/*<Text>*/}
+                        {/*    You have 10 tasks in <Text style={{fontWeight: 'bold'}}>{todolists.length}</Text> todolists*/}
+                        {/*</Text>*/}
+                        <Text>Today is 16 March 2023</Text>
                     </View>
                     <View>
-                        <View>7 tasks completed</View>
-                        <View>3 tasks have to DO</View>
+                        <Text>7 tasks completed</Text>
+                        <Text>3 tasks have to DO</Text>
                     </View>
                 </View>
 
@@ -75,7 +76,7 @@ export const TodolistsScreen = () => {
                             // вариант записи с функцией внутри
                             // renderItem={({item}) => {
                             //     return (
-                            //         <View style={todolistMainStyles.todolistList}>
+                            //         <View style={todolistsScreenStyles.todolistList}>
                             //             <Todolist todolist={item}/>
                             //         </View>
                             //     )
@@ -83,7 +84,6 @@ export const TodolistsScreen = () => {
                         />
                         : <Text>{MESSAGE_TODOS_END}</Text>
                 }
-
             </View>
         </SaveAreaViewWrapper>
     )

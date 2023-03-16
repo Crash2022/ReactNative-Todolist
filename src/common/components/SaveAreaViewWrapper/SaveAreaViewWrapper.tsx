@@ -7,7 +7,7 @@ type SaveAreaViewWrapperProps = {
 
 export const SaveAreaViewWrapper: React.FC<SaveAreaViewWrapperProps> = ({children}) => {
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1}} edges={['bottom', 'left', 'right']}>
             {children}
         </SafeAreaView>
     )
