@@ -10,6 +10,7 @@ export const todolistsScreenStyles = StyleSheet.create({
         marginVertical: 20,
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'center',
         gap: 20,
     },
     userInfo: {

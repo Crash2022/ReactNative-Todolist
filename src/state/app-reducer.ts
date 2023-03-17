@@ -10,13 +10,15 @@ export type AppInitialStateType = {
     // текст ошибки запишем сюда
     error: string | null
     isInitialized: boolean
+    login: string | null
 }
 export type AppInitialStateStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
 
 const initialState: AppInitialStateType = {
     status: 'idle', // idle - начальное значение (простаивание)
     error: null,
-    isInitialized: false
+    isInitialized: false,
+    login: null
 }
 
 export const appReducer = (state: AppInitialStateType = initialState,
@@ -31,6 +33,9 @@ export const appReducer = (state: AppInitialStateType = initialState,
         case 'APP/SET_INITIALIZED': {
             return {...state, isInitialized: action.isInitialized};
         }
+        case 'APP/SET_USER_LOGIN': {
+            return {...state, login: action.login};
+        }
         default:
             return {...state};
     }
@@ -42,7 +47,8 @@ export const appReducer = (state: AppInitialStateType = initialState,
 export type ApplicationActionTypes =
     AppSetStatusACType |
     AppSetErrorACType |
-    AppSetInitializedACType;
+    AppSetInitializedACType |
+    AppSetUserLoginACType;
 
 export type AppSetStatusACType = ReturnType<typeof appSetStatusAC>
 export const appSetStatusAC = (status: AppInitialStateStatusType) => ({
@@ -59,6 +65,11 @@ export const appSetInitializedAC = (isInitialized: boolean) => ({
     type: 'APP/SET_INITIALIZED', isInitialized
 } as const)
 
+export type AppSetUserLoginACType = ReturnType<typeof appSetUserLoginAC>
+export const appSetUserLoginAC = (login: string) => ({
+    type: 'APP/SET_USER_LOGIN', login
+} as const)
+
 /*-----------------------------------------------------------------------------------*/
 
 // thunks
@@ -70,6 +81,7 @@ export const initializeAppTC = (): AppThunkType => {
                 if (response.data.resultCode === 0) {
                     dispatch(setIsLoggedInAC(true));
                     dispatch(appSetStatusAC('succeeded'));
+                    dispatch(appSetUserLoginAC(response.data.data.login));
                 } else {
                     handleServerAppError(response.data, dispatch);
                     // if (response.data.messages) {

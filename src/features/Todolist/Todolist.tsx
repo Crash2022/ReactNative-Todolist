@@ -5,14 +5,14 @@ import {createTaskTC, getTasksTC} from '../../state/tasks-reducer'
 import {Task} from '../Task/Task'
 import {TodolistDomainType, updateTodolistFilterAC,
     deleteTodolistTC, updateTodolistTitleTC} from '../../state/todolists-reducer'
-import {TaskAPIType, TaskPriorities, TaskStatuses} from '../../api/todolistsAPI'
+import {TaskPriorities, TaskStatuses} from '../../api/todolistsAPI'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
-import {AppRootStateType} from '../../state/store'
-import {useSelector} from 'react-redux'
 import {Button, Text, TouchableOpacity, View} from 'react-native'
 import {v1} from 'react-native-uuid/dist/v1'
 import {MaterialCommunityIcons} from "@expo/vector-icons"
 import {todolistStyles} from './TodolistStyles'
+import {useAppSelector} from '../../common/hooks/useAppSelector';
+import {selectTasksObj} from '../../state/selectors';
 
 type TodolistPropsType = {
     todolist: TodolistDomainType
@@ -22,7 +22,8 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
 
     const MESSAGE_TASKS_END = 'No tasks in this todolist'
     const dispatch = useAppDispatch()
-    const tasksObj = useSelector<AppRootStateType, Array<TaskAPIType>>(state => state.tasks[todolist.id])
+
+    const tasksObj = useAppSelector(selectTasksObj)[todolist.id]
 
     /*------------------------------------------------*/
 

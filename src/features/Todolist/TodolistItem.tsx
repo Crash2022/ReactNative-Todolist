@@ -5,9 +5,8 @@ import {todolistItemStyles} from './TodolistItemStyles'
 import {todolistStyles} from './TodolistStyles'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
-import {useSelector} from 'react-redux'
-import {AppRootStateType} from '../../state/store'
-import {TaskAPIType} from '../../api/todolistsAPI'
+import {useAppSelector} from '../../common/hooks/useAppSelector';
+import {selectTasksObj} from '../../state/selectors';
 
 type TodolistPropsType = {
     todolist: TodolistDomainType
@@ -16,7 +15,7 @@ type TodolistPropsType = {
 export const TodolistItem: React.FC<TodolistPropsType> = React.memo(({todolist}) => {
 
     const dispatch = useAppDispatch()
-    const tasksObj = useSelector<AppRootStateType, Array<TaskAPIType>>(state => state.tasks[todolist.id])
+    const tasksObj = useAppSelector(selectTasksObj)[todolist.id]
 
     const removeTodolistHandler = useCallback(() => {
         dispatch(deleteTodolistTC(todolist.id))
@@ -28,7 +27,7 @@ export const TodolistItem: React.FC<TodolistPropsType> = React.memo(({todolist})
         <View style={todolistItemStyles.item}>
             <View>
                 <Text style={todolistItemStyles.itemTitle}>{todolist.title}</Text>
-                <Text>{tasksObj.length} tasks</Text>
+                <Text>11 tasks</Text>
             </View>
             <View>
                 <MaterialCommunityIcons name="delete-variant"

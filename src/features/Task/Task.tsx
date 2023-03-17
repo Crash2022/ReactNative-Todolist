@@ -7,6 +7,8 @@ import {View, Text, TouchableOpacity} from 'react-native'
 import {Checkbox} from 'expo-checkbox'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import {taskStyles} from './TaskStyles'
+import {useAppSelector} from '../../common/hooks/useAppSelector'
+import {selectAppStatus} from '../../state/selectors'
 
 type TaskPropsType = {
     todolistId: string
@@ -16,7 +18,7 @@ type TaskPropsType = {
 export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => {
 
     const dispatch = useAppDispatch()
-    // const status = useAppSelector(selectAppStatus)
+    const status = useAppSelector(selectAppStatus)
 
     const removeTaskHandler = useCallback(() => {
         dispatch(deleteTaskTC(todolistId, task.id))

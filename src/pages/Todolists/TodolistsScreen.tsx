@@ -4,7 +4,7 @@ import {ScrollView, View, Text, FlatList, Image, ListRenderItem,
     TouchableOpacity, Button, Dimensions, StyleSheet} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
-import {selectTodolists} from '../../state/selectors'
+import {selectAppInitialized, selectAppUserEmail, selectTodolists} from '../../state/selectors'
 import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
 import {createTodolistTC, getTodolistsTC, TodolistDomainType} from '../../state/todolists-reducer'
 import {v1} from 'react-native-uuid/dist/v1'
@@ -12,6 +12,7 @@ import {globalStyles} from '../../common/styles/GlobalStyles'
 import {todolistsScreenStyles} from './TodolistsScreenStyles'
 import {Todolist} from '../../features/Todolist/Todolist'
 import {TodolistItem} from "../../features/Todolist/TodolistItem"
+import {initializeAppTC} from '../../state/app-reducer';
 // import {UserPhoto} from '../../common/assets/images/user-photo.jpg'
 
 // функция отдаёт значения размера экрана
@@ -25,6 +26,8 @@ export const TodolistsScreen = () => {
 
     const dispatch = useAppDispatch()
     const todolists = useAppSelector(selectTodolists)
+    const userLogin = useAppSelector(selectAppUserEmail)
+    const isInitialized = useAppSelector(selectAppInitialized)
 
     const addNewTodoList = useCallback((title: string) => {
         dispatch(createTodolistTC({
@@ -47,7 +50,17 @@ export const TodolistsScreen = () => {
 
     useEffect(() => {
         dispatch(getTodolistsTC())
+        dispatch(initializeAppTC())
     }, [])
+
+    // лоадер, если приложение не инициализировано
+    if (!isInitialized) {
+        return (
+            <View>
+                <Text>Loading...</Text>
+            </View>
+        )
+    }
 
     return (
         <SaveAreaViewWrapper>
@@ -55,7 +68,7 @@ export const TodolistsScreen = () => {
                 {/*<ScrollView>*/}
                 <View style={todolistsScreenStyles.userBlock}>
                     <View style={todolistsScreenStyles.userInfo}>
-                        <Text style={todolistsScreenStyles.userNameStyle}>UserName</Text>
+                        <Text style={todolistsScreenStyles.userNameStyle}>{userLogin}</Text>
                         {/*<Text>*/}
                         {/*    You have 10 tasks in <Text style={{fontWeight: 'bold'}}>{todolists.length}</Text> todolists*/}
                         {/*</Text>*/}
