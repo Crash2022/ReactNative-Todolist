@@ -21,8 +21,6 @@ export const TodolistItem: React.FC<TodolistPropsType> = React.memo(({todolist})
         dispatch(deleteTodolistTC(todolist.id))
     }, [todolist.id])
 
-    console.log(todolist)
-
     return (
         <View style={todolistItemStyles.item}>
             <View>

@@ -71,8 +71,6 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
         dispatch(getTasksTC(todolist.id))
     }, [])
 
-    /*------------------------------------------------*/
-
     return (
         <View>
             <View style={todolistStyles.addItemBlock}>

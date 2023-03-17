@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from 'react'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
 import {ScrollView, View, Text, FlatList, Image, ListRenderItem,
-    TouchableOpacity, Button, Dimensions, StyleSheet} from 'react-native'
+    TouchableOpacity, Button, Dimensions, StyleSheet, ActivityIndicator} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {selectAppInitialized, selectAppUserEmail, selectTodolists} from '../../state/selectors'
@@ -13,6 +13,7 @@ import {todolistsScreenStyles} from './TodolistsScreenStyles'
 import {Todolist} from '../../features/Todolist/Todolist'
 import {TodolistItem} from "../../features/Todolist/TodolistItem"
 import {initializeAppTC} from '../../state/app-reducer';
+import {getTasksTC} from '../../state/tasks-reducer';
 // import {UserPhoto} from '../../common/assets/images/user-photo.jpg'
 
 // функция отдаёт значения размера экрана
@@ -49,16 +50,14 @@ export const TodolistsScreen = () => {
     }
 
     useEffect(() => {
-        dispatch(getTodolistsTC())
         dispatch(initializeAppTC())
+        dispatch(getTodolistsTC())
     }, [])
 
     // лоадер, если приложение не инициализировано
     if (!isInitialized) {
         return (
-            <View>
-                <Text>Loading...</Text>
-            </View>
+            <ActivityIndicator size="large"/>
         )
     }
 
