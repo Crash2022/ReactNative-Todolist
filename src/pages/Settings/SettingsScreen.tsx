@@ -3,8 +3,11 @@ import {View, Text, Button} from "react-native"
 import {SaveAreaViewWrapper} from "../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper"
 import {globalStyles} from "../../common/styles/GlobalStyles"
 import {SettingsProps} from "../../common/types/NavigationTypes"
+import {useAppNavigation} from '../../common/hooks/useAppNavigation'
 
-export const SettingsScreen = ({navigation}: SettingsProps) => {
+export const SettingsScreen = ({}: SettingsProps) => {
+
+    const navigation = useAppNavigation()
 
     return (
         <SaveAreaViewWrapper>

@@ -4,7 +4,7 @@ import {ScrollView, View, Text, FlatList, Image, ListRenderItem,
     TouchableOpacity, Button, Dimensions, StyleSheet, ActivityIndicator} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
-import {selectAppInitialized, selectAppUserEmail, selectTodolists} from '../../state/selectors'
+import {selectAppInitialized, selectAppUserEmail, selectAuthIsLoggedIn, selectTodolists} from '../../state/selectors'
 import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
 import {createTodolistTC, getTodolistsTC, TodolistDomainType} from '../../state/todolists-reducer'
 import {v1} from 'react-native-uuid/dist/v1'
@@ -12,17 +12,13 @@ import {globalStyles} from '../../common/styles/GlobalStyles'
 import {todolistsScreenStyles} from './TodolistsScreenStyles'
 import {Todolist} from '../../features/Todolist/Todolist'
 import {TodolistItem} from "../../features/Todolist/TodolistItem"
-import {initializeAppTC} from '../../state/app-reducer';
-import {getTasksTC} from '../../state/tasks-reducer';
-import {useAppNavigation} from '../../common/hooks/useAppNavigation';
+import {initializeAppTC} from '../../state/app-reducer'
+import {getTasksTC} from '../../state/tasks-reducer'
+import {useAppNavigation} from '../../common/hooks/useAppNavigation'
+import {TodolistsProps} from '../../common/types/NavigationTypes'
 // import {UserPhoto} from '../../common/assets/images/user-photo.jpg'
 
-// функция отдаёт значения размера экрана
-export const {width, height} = Dimensions.get('screen')
-export const WIDTH = width
-export const HEIGHT = height
-
-export const TodolistsScreen = () => {
+export const TodolistsScreen = ({}: TodolistsProps) => {
 
     const MESSAGE_TODOS_END = 'No todolists...'
 
@@ -30,6 +26,7 @@ export const TodolistsScreen = () => {
     const navigation = useAppNavigation()
 
     const isInitialized = useAppSelector(selectAppInitialized)
+    const isLoggedIn = useAppSelector(selectAuthIsLoggedIn)
     const userLogin = useAppSelector(selectAppUserEmail)
     const todolists = useAppSelector(selectTodolists)
 
@@ -43,8 +40,8 @@ export const TodolistsScreen = () => {
     // map todolists with render function
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
-            <TouchableOpacity onPress={() => {navigation.navigate('Todolists', {id: item.id})}}>
-                <View style={todolistListStyles.todolistList}>
+            <TouchableOpacity>
+                <View style={todolistsScreenStyles.todolistList}>
                     {/*<Todolist todolist={item}/>*/}
                     <TodolistItem todolist={item}/>
                 </View>
@@ -52,6 +49,12 @@ export const TodolistsScreen = () => {
         )
     }
 
+    // редирект на логин, если не залогинились
+    // useEffect(() => {
+    //     !isLoggedIn && navigation.navigate('Login')
+    // }, [isLoggedIn])
+
+    // первая отрисовка
     useEffect(() => {
         dispatch(initializeAppTC())
         dispatch(getTodolistsTC())
@@ -127,21 +130,3 @@ export const TodolistsScreen = () => {
         </SaveAreaViewWrapper>
     )
 }
-
-const todolistListStyles = StyleSheet.create({
-    todolistList: {
-        justifyContent: 'center',
-        // 10*2 - отнимаем паддинг с двух сторон
-        // 5*2 - и ещё отнимаем марджин с двух сторон
-        width: (WIDTH - 20 - 10) / 2,
-        // height: ((WIDTH - 10 * 2) - (5*2)) / 2,
-        height: 100,
-        padding: 10,
-        marginVertical: 10,
-        backgroundColor: '#f1eb84',
-        // backgroundColor: '#3598fd',
-        // backgroundColor: '#5772ff',
-        // backgroundColor: '#614dff',
-        borderRadius: 10,
-    },
-})

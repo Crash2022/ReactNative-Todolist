@@ -1,4 +1,9 @@
-import {StyleSheet} from 'react-native'
+import {Dimensions, StyleSheet} from 'react-native'
+
+// функция отдаёт значения размера экрана
+export const {width, height} = Dimensions.get('screen')
+export const WIDTH = width
+export const HEIGHT = height
 
 export const todolistsScreenStyles = StyleSheet.create({
     container: {
@@ -57,15 +62,21 @@ export const todolistsScreenStyles = StyleSheet.create({
     addTodoBlockText: {
         fontSize: 20,
     },
-    // todolistList: {
-    //     height: 100,
-    //     // width: WIDTH / 2,
-    //     borderRadius: 10,
-    //     padding: 10,
-    //     marginVertical: 5,
-    //     backgroundColor: '#f1eb84',
-    //     justifyContent: 'center'
-    // },
+    todolistList: {
+        justifyContent: 'center',
+        // 10*2 - отнимаем паддинг с двух сторон
+        // 5*2 - и ещё отнимаем марджин с двух сторон
+        width: (WIDTH - 20 - 10) / 2,
+        // height: ((WIDTH - 10 * 2) - (5*2)) / 2,
+        height: 100,
+        padding: 10,
+        marginVertical: 10,
+        backgroundColor: '#f1eb84',
+        // backgroundColor: '#3598fd',
+        // backgroundColor: '#5772ff',
+        // backgroundColor: '#614dff',
+        borderRadius: 10,
+    },
     noTodolists: {
         flexDirection: 'row',
         justifyContent: 'center',

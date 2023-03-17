@@ -5,9 +5,9 @@ import {globalStyles} from '../../common/styles/GlobalStyles'
 import {HomeProps} from '../../common/types/NavigationTypes'
 import {MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons'
 import {homeStyles} from "./HomeStyles"
-import {useAppNavigation} from "../../common/hooks/useAppNavigation";
+import {useAppNavigation} from "../../common/hooks/useAppNavigation"
 
-export const HomeScreen = (/*{navigation}: HomeProps*/) => {
+export const HomeScreen = ({}: HomeProps) => {
 
     const navigation = useAppNavigation()
 

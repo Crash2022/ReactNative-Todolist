@@ -11,8 +11,8 @@ import {Button, Text, TouchableOpacity, View} from 'react-native'
 import {v1} from 'react-native-uuid/dist/v1'
 import {MaterialCommunityIcons} from "@expo/vector-icons"
 import {todolistStyles} from './TodolistStyles'
-import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {selectTasksObj} from '../../state/selectors';
+import {useAppSelector} from '../../common/hooks/useAppSelector'
+import {selectTasksObj} from '../../state/selectors'
 
 type TodolistPropsType = {
     todolist: TodolistDomainType

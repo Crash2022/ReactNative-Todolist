@@ -1,12 +1,11 @@
 import React, {useCallback} from 'react'
 import {deleteTodolistTC, TodolistDomainType} from '../../state/todolists-reducer'
-import {Text, TouchableOpacity, View} from 'react-native'
+import {Text, View} from 'react-native'
 import {todolistItemStyles} from './TodolistItemStyles'
-import {todolistStyles} from './TodolistStyles'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
-import {useAppSelector} from '../../common/hooks/useAppSelector';
-import {selectTasksObj} from '../../state/selectors';
+import {useAppSelector} from '../../common/hooks/useAppSelector'
+import {selectTasksObj} from '../../state/selectors'
 
 type TodolistPropsType = {
     todolist: TodolistDomainType
