@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from "@react-navigation/native-stack"
-import {CompositeScreenProps, NavigatorScreenParams} from "@react-navigation/native"
+import {CompositeScreenProps, NavigatorScreenParams, useNavigation} from "@react-navigation/native"
 import {BottomTabScreenProps} from "@react-navigation/bottom-tabs"
 import {StackScreenProps} from "@react-navigation/stack"
 
