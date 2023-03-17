@@ -14,6 +14,7 @@ import {Todolist} from '../../features/Todolist/Todolist'
 import {TodolistItem} from "../../features/Todolist/TodolistItem"
 import {initializeAppTC} from '../../state/app-reducer';
 import {getTasksTC} from '../../state/tasks-reducer';
+import {useAppNavigation} from '../../common/hooks/useAppNavigation';
 // import {UserPhoto} from '../../common/assets/images/user-photo.jpg'
 
 // функция отдаёт значения размера экрана
@@ -26,9 +27,11 @@ export const TodolistsScreen = () => {
     const MESSAGE_TODOS_END = 'No todolists...'
 
     const dispatch = useAppDispatch()
-    const todolists = useAppSelector(selectTodolists)
-    const userLogin = useAppSelector(selectAppUserEmail)
+    const navigation = useAppNavigation()
+
     const isInitialized = useAppSelector(selectAppInitialized)
+    const userLogin = useAppSelector(selectAppUserEmail)
+    const todolists = useAppSelector(selectTodolists)
 
     const addNewTodoList = useCallback((title: string) => {
         dispatch(createTodolistTC({
@@ -40,7 +43,7 @@ export const TodolistsScreen = () => {
     // map todolists with render function
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate('Todolists', {id: item.id})}}>
                 <View style={todolistListStyles.todolistList}>
                     {/*<Todolist todolist={item}/>*/}
                     <TodolistItem todolist={item}/>
@@ -57,7 +60,7 @@ export const TodolistsScreen = () => {
     // лоадер, если приложение не инициализировано
     if (!isInitialized) {
         return (
-            <ActivityIndicator size="large"/>
+            <ActivityIndicator size="large" style={globalStyles.containerFlexCenter}/>
         )
     }
 
