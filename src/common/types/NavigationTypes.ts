@@ -1,14 +1,20 @@
 import {NativeStackScreenProps} from "@react-navigation/native-stack"
-import {CompositeScreenProps, NavigatorScreenParams, useNavigation} from "@react-navigation/native"
+import {CompositeScreenProps, NavigatorScreenParams} from "@react-navigation/native"
 import {BottomTabScreenProps} from "@react-navigation/bottom-tabs"
 import {StackScreenProps} from "@react-navigation/stack"
+import {TodolistDomainType} from "../../state/todolists-reducer"
 
 export type RootStackParamList = {
     // Auth: NavigatorScreenParams<RootAuthParamList>
     Home: undefined
-    Todolists: undefined
+    Todolists: NavigatorScreenParams<NestedTodolistsMain> // undefined
     Profile: undefined
     Settings: undefined
+}
+
+export type NestedTodolistsMain = {
+    Todolist: undefined
+    // Todolist: { todolist: TodolistDomainType }
 }
 
 // export type RootAuthParamList = {
@@ -17,15 +23,6 @@ export type RootStackParamList = {
 // }
 
 // export type RootAuthScreenProps = CompositeScreenProps<
-//     BottomTabScreenProps<RootStackParamList, 'Auth'>,
-//     StackScreenProps<RootAuthParamList>>
-
-// **************************************
-
-// export type RootTodolistParamList = {
-//     TodoItem: {id: number} | undefined
-// }
-// export type RootTodolistsScreenProps = CompositeScreenProps<
 //     BottomTabScreenProps<RootStackParamList, 'Auth'>,
 //     StackScreenProps<RootAuthParamList>>
 

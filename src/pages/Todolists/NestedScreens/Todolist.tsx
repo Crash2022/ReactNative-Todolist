@@ -1,18 +1,19 @@
 import React, {useCallback, useEffect} from 'react'
-import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
-import {EditableSpan} from '../../common/components/EditableSpan/EditableSpan'
-import {createTaskTC, getTasksTC} from '../../state/tasks-reducer'
-import {Task} from '../Task/Task'
+import {AddItemForm} from '../../../common/components/AddItemForm/AddItemForm'
+import {EditableSpan} from '../../../common/components/EditableSpan/EditableSpan'
+import {createTaskTC, getTasksTC} from '../../../state/tasks-reducer'
+import {Task} from '../../../features/Task/Task'
 import {TodolistDomainType, updateTodolistFilterAC,
-    deleteTodolistTC, updateTodolistTitleTC} from '../../state/todolists-reducer'
-import {TaskPriorities, TaskStatuses} from '../../api/todolistsAPI'
-import {useAppDispatch} from '../../common/hooks/useAppDispatch'
+    deleteTodolistTC, updateTodolistTitleTC} from '../../../state/todolists-reducer'
+import {TaskPriorities, TaskStatuses} from '../../../api/todolistsAPI'
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch'
 import {Button, Text, TouchableOpacity, View} from 'react-native'
 import {v1} from 'react-native-uuid/dist/v1'
 import {MaterialCommunityIcons} from "@expo/vector-icons"
-import {todolistStyles} from './TodolistStyles'
-import {useAppSelector} from '../../common/hooks/useAppSelector'
-import {selectTasksObj} from '../../state/selectors'
+import {todolistStyles} from '../../../features/Todolist/TodolistStyles'
+import {useAppSelector} from '../../../common/hooks/useAppSelector'
+import {selectTasksObj} from '../../../state/selectors'
+import {useAppNavigation} from "../../../common/hooks/useAppNavigation";
 
 type TodolistPropsType = {
     todolist: TodolistDomainType
@@ -21,7 +22,9 @@ type TodolistPropsType = {
 export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => {
 
     const MESSAGE_TASKS_END = 'No tasks in this todolist'
+
     const dispatch = useAppDispatch()
+    const navigation = useAppNavigation()
 
     const tasksObj = useAppSelector(selectTasksObj)[todolist.id]
 
@@ -74,6 +77,9 @@ export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => 
     return (
         <View>
             <View style={todolistStyles.addItemBlock}>
+                <View>
+                    <Text>Go to Todolists</Text>
+                </View>
                 <View style={todolistStyles.editableSpan}>
                     <EditableSpan title={todolist.title} onChangeInput={changeTodolistTitleHandler}/>
                 </View>

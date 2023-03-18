@@ -10,7 +10,7 @@ import {createTodolistTC, getTodolistsTC, TodolistDomainType} from '../../state/
 import {v1} from 'react-native-uuid/dist/v1'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {todolistsScreenStyles} from './TodolistsScreenStyles'
-import {Todolist} from '../../features/Todolist/Todolist'
+import {Todolist} from './NestedScreens/Todolist'
 import {TodolistItem} from "../../features/Todolist/TodolistItem"
 import {initializeAppTC} from '../../state/app-reducer'
 import {getTasksTC} from '../../state/tasks-reducer'
@@ -40,7 +40,7 @@ export const TodolistsScreen = ({}: TodolistsProps) => {
     // map todolists with render function
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate('Todolist')}}>
                 <View style={todolistsScreenStyles.todolistList}>
                     {/*<Todolist todolist={item}/>*/}
                     <TodolistItem todolist={item}/>

@@ -18,6 +18,7 @@ import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import {View} from 'react-native'
 import {Login} from '../features/Auth/Login'
 import {globalStyles} from '../common/styles/GlobalStyles';
+import {NestedTodolistsMain} from "../pages/Todolists/NestedScreens/NestedTodolistsMain";
 
 /*------------------------------------------------*/
 
@@ -119,7 +120,7 @@ export const Main = React.memo(() => {
 
     return (
         <View style={globalStyles.container}>
-            <Stack.Navigator screenOptions={{headerTitleAlign: 'center'}}>
+            <Stack.Navigator screenOptions={{headerTitleAlign: 'center', headerShown: true}}>
                 {/*<Stack.Screen name="Auth"*/}
                 {/*              component={RootAuth}*/}
                 {/*              options={{*/}
@@ -139,7 +140,7 @@ export const Main = React.memo(() => {
                               }}
                 />
                 <Stack.Screen name="Todolists"
-                              component={TodolistsScreen}
+                              component={NestedTodolistsMain}
                               options={{
                                   tabBarLabel: 'Todolists',
                                   tabBarIcon: ({color, size}) => (
