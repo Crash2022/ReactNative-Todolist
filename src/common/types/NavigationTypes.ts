@@ -7,14 +7,15 @@ import {TodolistDomainType} from "../../state/todolists-reducer"
 export type RootStackParamList = {
     // Auth: NavigatorScreenParams<RootAuthParamList>
     Home: undefined
-    Todolists: NavigatorScreenParams<NestedTodolistsMain> // undefined
+    // Todolists: undefined
+    Todolists: NavigatorScreenParams<NestedTodolistsMain>
     Profile: undefined
     Settings: undefined
 }
 
 export type NestedTodolistsMain = {
-    Todolist: undefined
-    // Todolist: { todolist: TodolistDomainType }
+    Todolists: undefined
+    Todolist: { todolist: TodolistDomainType }
 }
 
 // export type RootAuthParamList = {

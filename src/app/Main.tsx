@@ -141,6 +141,7 @@ export const Main = React.memo(() => {
                 />
                 <Stack.Screen name="Todolists"
                               component={NestedTodolistsMain}
+                              // component={TodolistsScreen}
                               options={{
                                   tabBarLabel: 'Todolists',
                                   tabBarIcon: ({color, size}) => (

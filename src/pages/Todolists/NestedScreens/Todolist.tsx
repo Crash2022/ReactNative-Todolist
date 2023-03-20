@@ -15,16 +15,17 @@ import {useAppSelector} from '../../../common/hooks/useAppSelector'
 import {selectTasksObj} from '../../../state/selectors'
 import {useAppNavigation} from "../../../common/hooks/useAppNavigation";
 
-type TodolistPropsType = {
-    todolist: TodolistDomainType
-}
+// type TodolistPropsType = {
+//     todolist: TodolistDomainType
+// }
 
-export const Todolist: React.FC<TodolistPropsType> = React.memo(({todolist}) => {
+export const Todolist: any = React.memo(({route, navigation}:any) => {
 
     const MESSAGE_TASKS_END = 'No tasks in this todolist'
 
     const dispatch = useAppDispatch()
-    const navigation = useAppNavigation()
+    // const navigation = useAppNavigation()
+    const {todolist} = route.params
 
     const tasksObj = useAppSelector(selectTasksObj)[todolist.id]
 

@@ -4,7 +4,13 @@ import {ScrollView, View, Text, FlatList, Image, ListRenderItem,
     TouchableOpacity, Button, Dimensions, StyleSheet, ActivityIndicator} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
-import {selectAppInitialized, selectAppUserEmail, selectAuthIsLoggedIn, selectTodolists} from '../../state/selectors'
+import {
+    selectAppInitialized,
+    selectAppUserEmail,
+    selectAuthIsLoggedIn,
+    selectTasksObj,
+    selectTodolists
+} from '../../state/selectors'
 import {AddItemForm} from '../../common/components/AddItemForm/AddItemForm'
 import {createTodolistTC, getTodolistsTC, TodolistDomainType} from '../../state/todolists-reducer'
 import {v1} from 'react-native-uuid/dist/v1'
@@ -18,7 +24,7 @@ import {useAppNavigation} from '../../common/hooks/useAppNavigation'
 import {TodolistsProps} from '../../common/types/NavigationTypes'
 // import {UserPhoto} from '../../common/assets/images/user-photo.jpg'
 
-export const TodolistsScreen = ({}: TodolistsProps) => {
+export const TodolistsScreen:any = ({}: TodolistsProps) => {
 
     const MESSAGE_TODOS_END = 'No todolists...'
 
@@ -40,7 +46,8 @@ export const TodolistsScreen = ({}: TodolistsProps) => {
     // map todolists with render function
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
-            <TouchableOpacity onPress={() => {navigation.navigate('Todolist')}}>
+            <TouchableOpacity>
+            {/*<TouchableOpacity onPress={() => {navigation.navigate('Todolist',{todolist:item})}}>*/}
                 <View style={todolistsScreenStyles.todolistList}>
                     {/*<Todolist todolist={item}/>*/}
                     <TodolistItem todolist={item}/>
@@ -66,6 +73,9 @@ export const TodolistsScreen = ({}: TodolistsProps) => {
             <ActivityIndicator size="large" style={globalStyles.containerFlexCenter}/>
         )
     }
+
+    // const tasksObj = useAppSelector(selectTasksObj)
+    // console.log(tasksObj)
 
     return (
         <SaveAreaViewWrapper>
