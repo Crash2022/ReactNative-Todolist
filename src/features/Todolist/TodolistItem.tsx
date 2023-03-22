@@ -24,7 +24,7 @@ export const TodolistItem: React.FC<TodolistPropsType> = React.memo(({todolist})
         <View style={todolistItemStyles.item}>
             <View>
                 <Text style={todolistItemStyles.itemTitle}>{todolist.title}</Text>
-                <Text>11 tasks</Text>
+                <Text>? tasks</Text>
             </View>
             <View>
                 <MaterialCommunityIcons name="delete-variant"

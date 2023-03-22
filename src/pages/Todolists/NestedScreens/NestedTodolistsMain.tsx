@@ -5,11 +5,11 @@ import {TodolistsScreen} from '../TodolistsScreen'
 
 export const NestedTodolistsMain = () => {
 
-    const Stack = createNativeStackNavigator<NestedTodolistsMain>()
+    const Stack = createNativeStackNavigator<any>()
 
     return (
         <Stack.Navigator screenOptions={{headerTitleAlign: 'center', headerShown: true}}>
-            <Stack.Screen name="Todolists" component={TodolistsScreen}/>
+            <Stack.Screen name="TodolistsFromNested" component={TodolistsScreen}/>
             <Stack.Screen name="Todolist" component={Todolist}/>
         </Stack.Navigator>
     )

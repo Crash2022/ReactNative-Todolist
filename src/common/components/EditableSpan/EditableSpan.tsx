@@ -60,9 +60,7 @@ export const EditableSpan: React.FC<EditableSpanPropsType> = React.memo(({title,
                         <View>
                             <TextInput
                                 value={inputTitle}
-                                onChangeText={(newTitle: string) => {
-                                    setInputTitle(newTitle)
-                                }}
+                                onChangeText={(newTitle: string) => {setInputTitle(newTitle)}}
                                 style={editableSpanStyles.input}
                                 // disabled={status === 'loading'}
                                 // error={!!error}

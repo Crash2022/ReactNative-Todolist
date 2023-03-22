@@ -19,14 +19,13 @@ import {useAppNavigation} from "../../../common/hooks/useAppNavigation";
 //     todolist: TodolistDomainType
 // }
 
-export const Todolist: any = React.memo(({route, navigation}:any) => {
+export const Todolist = React.memo(({route, navigation}: any) => {
 
     const MESSAGE_TASKS_END = 'No tasks in this todolist'
 
     const dispatch = useAppDispatch()
     // const navigation = useAppNavigation()
     const {todolist} = route.params
-
     const tasksObj = useAppSelector(selectTasksObj)[todolist.id]
 
     /*------------------------------------------------*/
@@ -76,11 +75,11 @@ export const Todolist: any = React.memo(({route, navigation}:any) => {
     }, [])
 
     return (
-        <View>
+        <View style={todolistStyles.container}>
             <View style={todolistStyles.addItemBlock}>
-                <View>
-                    <Text>Go to Todolists</Text>
-                </View>
+                {/*<View>*/}
+                {/*    <Text>Go to Todolists</Text>*/}
+                {/*</View>*/}
                 <View style={todolistStyles.editableSpan}>
                     <EditableSpan title={todolist.title} onChangeInput={changeTodolistTitleHandler}/>
                 </View>

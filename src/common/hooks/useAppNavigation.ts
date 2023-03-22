@@ -3,4 +3,4 @@ import {RootStackParamList} from "../types/NavigationTypes"
 
 export type NavigationUseType = NavigationProp<RootStackParamList>
 
-export const useAppNavigation = () => useNavigation<NavigationUseType>()
+export const useAppNavigation = () => useNavigation<any>()

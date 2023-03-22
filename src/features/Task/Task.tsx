@@ -34,10 +34,7 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
     }, [todolistId, task.id])
 
     return (
-        <View style={task.status === TaskStatuses.Completed ? {
-            ...taskStyles.task,
-            opacity: 0.5
-        } : {...taskStyles.task}}>
+        <View style={task.status === TaskStatuses.Completed ? {...taskStyles.task, opacity: 0.5} : {...taskStyles.task}}>
             <View style={taskStyles.title}>
                 <View>
                     <Checkbox value={task.status === TaskStatuses.Completed}
@@ -52,7 +49,7 @@ export const Task: React.FC<TaskPropsType> = React.memo(({todolistId, task}) => 
             </View>
             <View>
                 <TouchableOpacity>
-                    <MaterialCommunityIcons name="delete-variant" size={24} color="white"
+                    <MaterialCommunityIcons name="delete-variant" size={24} color="red"
                                             onPress={removeTaskHandler}
                                             // disabled={status === 'loading'}
                     />

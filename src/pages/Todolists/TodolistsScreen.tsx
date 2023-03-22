@@ -1,7 +1,9 @@
 import React, {useCallback, useEffect} from 'react'
 import {SaveAreaViewWrapper} from '../../common/components/SaveAreaViewWrapper/SaveAreaViewWrapper'
-import {ScrollView, View, Text, FlatList, Image, ListRenderItem,
-    TouchableOpacity, Button, Dimensions, StyleSheet, ActivityIndicator} from 'react-native'
+import {
+    ScrollView, View, Text, FlatList, Image, ListRenderItem,
+    TouchableOpacity, Button, Dimensions, StyleSheet, ActivityIndicator
+} from 'react-native'
 import {useAppDispatch} from '../../common/hooks/useAppDispatch'
 import {useAppSelector} from '../../common/hooks/useAppSelector'
 import {
@@ -17,14 +19,15 @@ import {v1} from 'react-native-uuid/dist/v1'
 import {globalStyles} from '../../common/styles/GlobalStyles'
 import {todolistsScreenStyles} from './TodolistsScreenStyles'
 import {Todolist} from './NestedScreens/Todolist'
-import {TodolistItem} from "../../features/Todolist/TodolistItem"
+import {TodolistItem} from '../../features/Todolist/TodolistItem'
 import {initializeAppTC} from '../../state/app-reducer'
 import {getTasksTC} from '../../state/tasks-reducer'
 import {useAppNavigation} from '../../common/hooks/useAppNavigation'
 import {TodolistsProps} from '../../common/types/NavigationTypes'
+import {useNavigate} from 'react-router-dom';
 // import {UserPhoto} from '../../common/assets/images/user-photo.jpg'
 
-export const TodolistsScreen:any = ({}: TodolistsProps) => {
+export const TodolistsScreen: any = ({}: TodolistsProps) => {
 
     const MESSAGE_TODOS_END = 'No todolists...'
 
@@ -46,10 +49,8 @@ export const TodolistsScreen:any = ({}: TodolistsProps) => {
     // map todolists with render function
     const render: ListRenderItem<TodolistDomainType> = ({item}) => {
         return (
-            <TouchableOpacity>
-            {/*<TouchableOpacity onPress={() => {navigation.navigate('Todolist',{todolist:item})}}>*/}
+            <TouchableOpacity onPress={() => navigation.navigate({name: 'Todolist', params: {todolist: item}})}>
                 <View style={todolistsScreenStyles.todolistList}>
-                    {/*<Todolist todolist={item}/>*/}
                     <TodolistItem todolist={item}/>
                 </View>
             </TouchableOpacity>
@@ -73,9 +74,6 @@ export const TodolistsScreen:any = ({}: TodolistsProps) => {
             <ActivityIndicator size="large" style={globalStyles.containerFlexCenter}/>
         )
     }
-
-    // const tasksObj = useAppSelector(selectTasksObj)
-    // console.log(tasksObj)
 
     return (
         <SaveAreaViewWrapper>
@@ -107,34 +105,34 @@ export const TodolistsScreen:any = ({}: TodolistsProps) => {
                     </View>
                 </View>
                 <ScrollView>
-                <View style={todolistsScreenStyles.addTodoBlock}>
-                    <View style={todolistsScreenStyles.addTodoBlockTitle}>
-                        <Text style={todolistsScreenStyles.taskText}>Add new todolist</Text>
+                    <View style={todolistsScreenStyles.addTodoBlock}>
+                        <View style={todolistsScreenStyles.addTodoBlockTitle}>
+                            <Text style={todolistsScreenStyles.taskText}>Add new todolist</Text>
+                        </View>
+                        <AddItemForm addItem={addNewTodoList}/>
                     </View>
-                    <AddItemForm addItem={addNewTodoList}/>
-                </View>
 
-                {
-                    todolists.length !== 0 ?
-                        <FlatList data={todolists}
-                                  keyExtractor={item => item.id}
-                                  renderItem={render}
-                                  numColumns={2} // количество колонок
-                                  columnWrapperStyle={{justifyContent:'space-between'}}
+                    {
+                        todolists.length !== 0 ?
+                            <FlatList data={todolists}
+                                      keyExtractor={item => item.id}
+                                      renderItem={render}
+                                      numColumns={2} // количество колонок
+                                      columnWrapperStyle={{justifyContent: 'space-between'}}
 
-                            // вариант записи с функцией внутри
-                            // renderItem={({item}) => {
-                            //     return (
-                            //         <View style={todolistsScreenStyles.todolistList}>
-                            //             <Todolist todolist={item}/>
-                            //         </View>
-                            //     )
-                            // }}
-                        />
-                        : <View style={todolistsScreenStyles.noTodolists}>
-                            <Text style={todolistsScreenStyles.noTodolistsText}>{MESSAGE_TODOS_END}</Text>
-                    </View>
-                }
+                                // вариант записи с функцией внутри
+                                // renderItem={({item}) => {
+                                //     return (
+                                //         <View style={todolistsScreenStyles.todolistList}>
+                                //             <Todolist todolist={item}/>
+                                //         </View>
+                                //     )
+                                // }}
+                            />
+                            : <View style={todolistsScreenStyles.noTodolists}>
+                                <Text style={todolistsScreenStyles.noTodolistsText}>{MESSAGE_TODOS_END}</Text>
+                            </View>
+                    }
                 </ScrollView>
             </View>
         </SaveAreaViewWrapper>

@@ -12,10 +12,10 @@ export const editableSpanStyles = StyleSheet.create({
     },
     input: {
         fontSize: 20,
-        color: 'white',
+        color: 'black',
         borderStyle: 'solid',
         borderWidth: 1,
-        borderColor: 'white',
+        borderColor: 'black',
         padding: 10,
         width: 200,
         height: 50,
@@ -23,6 +23,7 @@ export const editableSpanStyles = StyleSheet.create({
     text: {
         // padding: 10,
         fontSize: 20,
-        color: 'white',
+        // color: 'white',
+        color: 'black',
     },
 })

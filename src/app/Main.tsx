@@ -1,15 +1,11 @@
 import React from 'react'
-import {PATH} from '../api/path'
+// import {PATH} from '../api/path'
 // import {ErrorSnackBar} from '../common/components/ErrorSnackBar/ErrorSnackBar'
-// import {Login} from '../features/Login.tsx/Login'
 // import {Error404} from '../common/components/Error404/Error404'
-// import {PrivateRoutes} from '../common/components/PrivateRoutes/PrivateRoutes'
 import {HomeScreen} from '../pages/Home/HomeScreen'
 import {TodolistsScreen} from '../pages/Todolists/TodolistsScreen'
 import {ProfileScreen} from '../pages/Profile/ProfileScreen'
 import {SettingsScreen} from '../pages/Settings/SettingsScreen'
-// import {RootAuth} from '../features/Auth/RootAuth'
-// import {LoginFull} from '../features/Auth/LoginFull'
 import {RootStackParamList} from '../common/types/NavigationTypes'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 // import {createDrawerNavigator} from '@react-navigation/drawer'
@@ -18,7 +14,7 @@ import {FontAwesome, Ionicons, MaterialCommunityIcons} from '@expo/vector-icons'
 import {View} from 'react-native'
 import {Login} from '../features/Auth/Login'
 import {globalStyles} from '../common/styles/GlobalStyles';
-import {NestedTodolistsMain} from "../pages/Todolists/NestedScreens/NestedTodolistsMain";
+import {NestedTodolistsMain} from "../pages/Todolists/NestedScreens/NestedTodolistsMain"
 
 /*------------------------------------------------*/
 

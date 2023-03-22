@@ -1,8 +1,9 @@
 import React from "react"
 import {View, Text, Button} from "react-native"
-import {RootAuthScreenProps} from "../../common/types/NavigationTypes"
+// import {RootAuthScreenProps} from "../../common/types/NavigationTypes"
 
-export const Registration = ({route, navigation}: RootAuthScreenProps) => {
+export const Registration = ({route, navigation}: any /*RootAuthScreenProps*/) => {
+
     return (
         <View>
             <Text>Registration Page</Text>

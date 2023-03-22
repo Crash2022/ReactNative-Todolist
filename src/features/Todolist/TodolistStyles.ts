@@ -1,12 +1,15 @@
 import {StyleSheet} from 'react-native'
 
 export const todolistStyles = StyleSheet.create({
-    container: {
+    containerOld: {
         borderStyle: 'solid',
         borderWidth: 1,
         borderColor: 'black',
         borderRadius: 10,
         marginBottom: 10,
+    },
+    container: {
+        marginHorizontal: 15,
     },
     addItemBlock: {
         flexDirection: 'row',
@@ -15,7 +18,7 @@ export const todolistStyles = StyleSheet.create({
         height: 60,
     },
     editableSpan: {
-        marginBottom: 20,
+        // marginBottom: 20,
     },
     deleteIcon: {
         //
