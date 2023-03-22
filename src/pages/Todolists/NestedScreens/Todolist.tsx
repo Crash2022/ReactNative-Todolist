@@ -100,9 +100,15 @@ export const Todolist = React.memo(({route, navigation}: any) => {
             </View>
 
             <View style={todolistStyles.filterButtons}>
-                <Button title={'All'} onPress={updateFilterAll}/>
-                <Button title={'Completed'} onPress={updateFilterCompleted}/>
-                <Button title={'Active'} onPress={updateFilterActive}/>
+                <View style={{width: 110}}>
+                    <Button title={'All'} onPress={updateFilterAll}/>
+                </View>
+                <View style={{width: 110}}>
+                    <Button title={'Completed'} onPress={updateFilterCompleted}/>
+                </View>
+                <View style={{width: 110}}>
+                    <Button title={'Active'} onPress={updateFilterActive}/>
+                </View>
             </View>
 
             <View style={todolistStyles.tasksList}>

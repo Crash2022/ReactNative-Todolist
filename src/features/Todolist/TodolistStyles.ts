@@ -25,6 +25,8 @@ export const todolistStyles = StyleSheet.create({
     },
     addItemForm: {
         marginBottom: 10,
+        alignItems: 'center',
+        // minWidth: '100%',
     },
     filterButtons: {
         flexDirection: 'row',

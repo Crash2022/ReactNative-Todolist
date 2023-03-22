@@ -5,9 +5,11 @@ export const addItemFormStyles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 10,
         padding: 10,
+        width: '100%',
     },
     inputBlock: {
         flexDirection: 'row',
+        justifyContent: 'center',
         alignItems: 'center',
         gap: 10,
         marginBottom: 5,
@@ -19,5 +21,8 @@ export const addItemFormStyles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         borderRadius: 10,
+    },
+    textLength: {
+        textAlign: 'center'
     },
 })

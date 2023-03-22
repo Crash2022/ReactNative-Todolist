@@ -43,7 +43,6 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
         <HideKeyboard>
             <View style={addItemFormStyles.container}>
                 <View style={addItemFormStyles.inputBlock}>
-
                     <TextInput value={inputValue}
                                onChangeText={(newTitle: string) => {
                                    setInputValue(newTitle)
@@ -51,7 +50,6 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
                                style={addItemFormStyles.input}
                                 // disabled={disabled}
                     />
-
                     {/*<TextField variant="outlined"*/}
                     {/*           // label="Введите текст"*/}
                     {/*           label="Enter text here..."*/}
@@ -71,9 +69,8 @@ export const AddItemForm: React.FC<AddItemFormPropsType> = React.memo(({addItem,
                         </TouchableOpacity>
                     </View>
                 </View>
-
                 <View>
-                    <Text>Text length: {inputValue.length} symbols, max - 100</Text>
+                    <Text style={addItemFormStyles.textLength}>Text length: {inputValue.length} symbols, max - 100</Text>
                 </View>
             </View>
         </HideKeyboard>
